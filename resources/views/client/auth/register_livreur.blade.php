@@ -401,6 +401,14 @@ if (!isset($success)) $success = '';
         </div>
       </div>
 
+      <div class="field">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><path d="m10.5 15.5 1.2 1.2 2.3-2.4"/></svg>
+        <input type="password" name="password_confirmation" required placeholder="Confirmer le mot de passe" id="pw-signup-confirm">
+        <div class="eye" onclick="togglePw('pw-signup-confirm', this)">
+            <i class="fas fa-eye"></i>
+        </div>
+      </div>
+
       <p class="terms">En créant un compte, vous acceptez nos <a href="#">Conditions d'utilisation</a> et notre <a href="#">Politique de confidentialité</a>.</p>
 
       <button type="submit" class="btn-primary">

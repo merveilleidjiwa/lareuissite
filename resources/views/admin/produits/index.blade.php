@@ -1,4 +1,8 @@
 <?php
+if (!isset($tarif_data)) $tarif_data = ['prix_km' => 100];
+if (!isset($produits)) $produits = [];
+?>
+<?php
 if (!isset($is_connected)) $is_connected = false;
 if (!isset($user_nom)) $user_nom = '';
 if (!isset($initiale)) $initiale = '';

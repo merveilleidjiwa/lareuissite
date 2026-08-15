@@ -1,4 +1,9 @@
 <?php
+if (!isset($totalCA)) $totalCA = 150000;
+if (!isset($nbCmd)) $nbCmd = 24;
+if (!isset($cmds)) $cmds = [];
+?>
+<?php
 if (!isset($is_connected)) $is_connected = false;
 if (!isset($user_nom)) $user_nom = '';
 if (!isset($initiale)) $initiale = '';

@@ -1,4 +1,9 @@
 <?php
+if (!isset($vendeur_nom)) $vendeur_nom = 'Ma Boutique';
+if (!isset($message_v)) $message_v = '';
+if (!isset($produits)) $produits = [];
+?>
+<?php
 if (!isset($is_connected)) $is_connected = false;
 if (!isset($user_nom)) $user_nom = '';
 if (!isset($initiale)) $initiale = '';

@@ -1,4 +1,10 @@
 <?php
+if (!isset($initiale)) $initiale = 'U';
+if (!isset($user_nom)) $user_nom = 'Utilisateur';
+if (!isset($user_infos)) $user_infos = ['email'=>'user@example.com', 'telephone'=>'00000000'];
+if (!isset($historique)) $historique = [];
+?>
+<?php
 if (!isset($is_connected)) $is_connected = false;
 if (!isset($user_nom)) $user_nom = '';
 if (!isset($initiale)) $initiale = '';
