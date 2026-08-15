@@ -36,7 +36,7 @@ Route::group([], function () {
 // Admin
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::match(['get', 'post'], '/', [AdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('/produits', [AdminController::class, 'produits'])->name('produits.index');
+    Route::match(['get', 'post'], '/produits', [AdminController::class, 'produits'])->name('produits.index');
     Route::get('/promos', [AdminController::class, 'promos'])->name('promos.index');
     Route::get('/stats', [AdminController::class, 'stats'])->name('stats');
     Route::get('/ajouter-admin', [AdminController::class, 'addAdmin'])->name('ajouter_admin');
