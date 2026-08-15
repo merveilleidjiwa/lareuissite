@@ -6,160 +6,142 @@ if (!isset($erreur)) $erreur = '';
 if (!isset($message)) $message = '';
 if (!isset($success)) $success = '';
 ?>
-<?php
-$erreur = '';
-$message = '';
-$success = '';
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S'inscrire - La Réussite</title>
+    <title>Créer un compte - La Réussite</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { theme: { extend: { colors: { brand: { green: '#27ae60', light: '#f4fbf7', orange: '#F9A825' } } } } }</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
         .auth-page { font-family: 'Poppins', sans-serif; }
-        .input-auth { @apply w-full bg-white border-2 border-gray-200 rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-gray-800; }
-        .input-auth:focus { @apply border-[#27ae60] ring-4 ring-[#27ae60]/20; }
-        .input-auth::placeholder { @apply text-gray-400; }
-        .btn-auth { @apply w-full bg-[#27ae60] hover:bg-[#219150] text-white font-bold py-4 rounded-2xl uppercase tracking-widest text-sm shadow-lg shadow-[#27ae60]/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]; }
-        .role-btn { @apply flex-1 py-4 px-4 rounded-2xl border-2 font-bold text-sm uppercase transition-all cursor-pointer; }
-        .role-btn:not(.selected) { @apply border-gray-200 bg-gray-50 text-gray-600 hover:border-gray-300; }
-        .role-btn.selected { @apply border-[#27ae60] bg-[#27ae60]/10 text-[#27ae60]; }
-        body.prevent-flash { opacity: 0; }
-        body.loaded { opacity: 1; transition: opacity 0.3s ease; }
+        .input-auth { @apply w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none transition-all duration-300 text-gray-800 font-medium; }
+        .input-auth:focus { @apply border-[#27ae60] ring-4 ring-[#27ae60]/20 bg-white; }
+        .btn-auth { @apply w-full bg-[#27ae60] hover:bg-[#219150] text-white font-bold py-3.5 rounded-xl uppercase tracking-widest text-sm shadow-lg shadow-[#27ae60]/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[#27ae60]/50 active:translate-y-0; }
+        .btn-google { @apply w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-100 hover:bg-gray-50 text-gray-700 font-bold py-3.5 rounded-xl text-sm transition-all duration-300 hover:-translate-y-1; }
     </style>
 </head>
-<body class="auth-page min-h-screen flex bg-gradient-to-br from-[#f4fbf7] via-white to-[#e8f5ee] prevent-flash" id="body-el">
+<body class="auth-page min-h-screen flex relative overflow-hidden bg-gradient-to-br from-[#27ae60] to-[#1e8449]">
 
-    <div id="page-loader" class="fixed inset-0 bg-[#f4fbf7] z-[99999] flex items-center justify-center">
-        <img src="/logo-reussite.png" alt="" class="w-20 h-20 object-contain animate-loader" onerror="this.style.display='none'">
+    <!-- Éléments de décor du fond (Cercles) -->
+    <div class="absolute inset-0 pointer-events-none opacity-20">
+        <div class="absolute top-[-10%] left-[-5%] w-96 h-96 rounded-full bg-white blur-3xl"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-white blur-3xl"></div>
+        <div class="absolute top-20 left-20 w-64 h-64 rounded-full bg-white opacity-40"></div>
+        <div class="absolute bottom-32 right-20 w-48 h-48 rounded-full bg-white opacity-40"></div>
     </div>
 
-    <div class="flex-1 flex flex-col lg:flex-row min-h-screen w-full">
-        <!-- Côté gauche : visuel / branding (responsive) -->
-        <div class="flex lg:w-1/2 bg-gradient-to-br from-[#27ae60] to-[#1e8449] p-8 lg:p-16 flex-col justify-between relative overflow-hidden min-h-[200px] lg:min-h-screen">
-            <div class="absolute inset-0 opacity-10">
-                <div class="absolute top-20 left-20 w-64 h-64 rounded-full bg-white"></div>
-                <div class="absolute bottom-32 right-20 w-48 h-48 rounded-full bg-white"></div>
+    <!-- Conteneur central -->
+    <div class="flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+        
+        <!-- Logo -->
+        <a href="{{ url('/') }}" class="mb-8 flex flex-col items-center gap-2 group">
+            <img src="/logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-white/60 shadow-2xl group-hover:scale-110 transition-transform duration-300" alt="Logo">
+            <div class="text-center">
+                <span class="font-brand text-3xl text-white drop-shadow-md font-bold tracking-tight">La Réussite</span>
+                <span class="block text-xs text-[#F9A825] uppercase tracking-[0.3em] font-black mt-1">Agronomique</span>
             </div>
-            <a href="{{ url('/') }}" class="relative flex items-center gap-3">
-                <img src="/logo-reussite.png" class="w-12 h-12 lg:w-14 lg:h-14 object-cover rounded-full border-2 border-white/40 shadow-xl" alt="La Réussite">
-                <span class="font-brand text-2xl lg:text-3xl text-white drop-shadow-sm">La Réussite</span>
-            </a>
-            <div class="relative space-y-4 lg:space-y-6 mt-6 lg:mt-0">
-                <h2 class="text-2xl lg:text-4xl font-bold text-white leading-tight">Rejoignez la communauté<br><span class="text-[#F9A825]">locale & fraîche</span></h2>
-                <p class="text-white/90 text-sm lg:text-lg max-w-sm">Produits du terroir, livraison rapide.</p>
-                <div class="flex gap-4 text-white/80 text-xs lg:text-base">
-                    <span><i class="fas fa-truck text-[#F9A825] mr-2"></i> Livraison rapide</span>
-                    <span><i class="fas fa-leaf text-[#F9A825] mr-2"></i> Produits frais</span>
+        </a>
+
+        <!-- Carte Formulaire -->
+        <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl shadow-black/20 p-8 lg:p-10 transform transition-all">
+            <div class="text-center mb-8">
+                <h1 class="text-2xl font-black text-gray-800 mb-1">Créer un compte</h1>
+                <p class="text-gray-500 text-sm font-medium">Rejoignez La Réussite</p>
+            </div>
+
+            <?php if(!empty($erreur)): ?>
+                <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r-xl mb-6 text-sm font-bold flex items-center gap-3">
+                    <i class="fas fa-exclamation-circle text-lg"></i>
+                    <?php echo htmlspecialchars($erreur, ENT_QUOTES, 'UTF-8'); ?>
                 </div>
-            </div>
-        </div>
+            <?php endif; ?>
 
-        <!-- Côté droit : formulaire -->
-        <div class="flex-1 flex items-center justify-center p-6 lg:p-12 overflow-y-auto">
-            <div class="w-full max-w-md">
-                <div class="bg-white rounded-[32px] shadow-2xl shadow-gray-200/50 border border-gray-200 p-8 lg:p-10">
-                    <h1 class="text-2xl font-bold text-gray-800 mb-2">Créer un compte</h1>
-                    <p class="text-gray-500 text-sm mb-8">Remplissez le formulaire pour rejoindre La Réussite</p>
-
-                    <?php if ($message === "success"): ?>
-                        <div class="bg-green-50 border border-green-200 text-green-800 p-5 rounded-2xl mb-6 text-center animate-fade-up">
-                            <i class="fas fa-check-circle text-3xl mb-2 text-[#27ae60]"></i>
-                            <p class="font-bold mb-3">Inscription réussie !</p>
-                            <a href="{{ url('connexion') }}" class="inline-block bg-[#27ae60] text-white px-6 py-2 rounded-xl font-bold text-sm hover:bg-[#219150] transition-colors">
-                                Se connecter maintenant
-                            </a>
-                        </div>
-                    <?php elseif ($message !== ""): ?>
-                        <div class="bg-red-50 border border-red-200 text-red-700 p-4 rounded-2xl mb-6 text-sm font-bold flex items-center gap-2">
-                            <i class="fas fa-exclamation-circle flex-shrink-0"></i>
-                            <?php echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <form method="POST" class="space-y-5" id="inscription-form">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Prénom</label>
-                                <input type="text" name="prenom" required placeholder="Merveille" class="input-auth" value="<?php echo htmlspecialchars($_POST['prenom'] ?? '', ENT_QUOTES); ?>">
+            <form method="POST" class="space-y-6">
+                                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="flex-1">
+                                    <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Prénom</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i class="fas fa-user text-gray-400"></i></div>
+                                        <input type="text" name="prenom" required placeholder="Prénom" class="pl-11 input-auth">
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Nom</label>
+                                    <input type="text" name="nom" required placeholder="Nom" class="input-auth">
+                                </div>
                             </div>
                             <div>
-                                <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Nom</label>
-                                <input type="text" name="nom" required placeholder="Kouassi" class="input-auth" value="<?php echo htmlspecialchars($_POST['nom'] ?? '', ENT_QUOTES); ?>">
+                                <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Email</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i class="fas fa-envelope text-gray-400"></i></div>
+                                    <input type="email" name="email" required placeholder="votre@email.com" class="pl-11 input-auth">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Téléphone</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i class="fas fa-phone text-gray-400"></i></div>
+                                    <input type="text" name="telephone" required placeholder="Ex: 0167424373" class="pl-11 input-auth">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Mot de passe</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i class="fas fa-lock text-gray-400"></i></div>
+                                    <input type="password" id="password" name="password" required placeholder="••••••••" class="pl-11 input-auth">
+                                    <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <i id="eye-icon" class="fas fa-eye"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Date de naissance</label>
-                            <input type="date" name="date_naissance" class="input-auth" value="<?php echo htmlspecialchars($_POST['date_naissance'] ?? '', ENT_QUOTES); ?>">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">E-mail</label>
-                            <input type="email" name="email" required placeholder="votre@email.com" class="input-auth" value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES); ?>">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Téléphone (WhatsApp)</label>
-                            <input type="tel" name="telephone" required placeholder="Ex: 0167424373" class="input-auth" value="<?php echo htmlspecialchars($_POST['telephone'] ?? '', ENT_QUOTES); ?>">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Mot de passe</label>
-                            <input type="password" name="password" required placeholder="••••••••" class="input-auth">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-2">Confirmation mot de passe</label>
-                            <input type="password" name="password_confirm" required placeholder="••••••••" class="input-auth">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-3">Je suis un...</label>
-                            <div class="flex gap-3">
-                                <label class="role-btn selected" id="role-acheteur">
-                                    <input type="radio" name="role" value="client" class="hidden" checked>
-                                    <i class="fas fa-shopping-cart mr-2"></i> Acheteur
-                                </label>
-                                <label class="role-btn" id="role-vendeur">
-                                    <input type="radio" name="role" value="vendeur" class="hidden">
-                                    <i class="fas fa-store mr-2"></i> Vendeur
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-auth mt-2">
-                            <i class="fas fa-user-plus mr-2"></i> S'inscrire
-                        </button>
-                    </form>
 
-                    <p class="text-center mt-8 text-gray-500 text-sm">
-                        Déjà un compte ? <a href="{{ url('connexion') }}" class="text-[#27ae60] font-bold hover:underline">Se connecter</a>
-                    </p>
-                </div>
+                <button type="submit" class="btn-auth">
+                    <i class="fas fa-sign-in-alt mr-2"></i> S'inscrire
+                </button>
+            </form>
 
-                <a href="{{ url('/') }}" class="block text-center mt-6 text-gray-400 hover:text-[#27ae60] text-sm transition-colors">
-                    <i class="fas fa-arrow-left mr-1"></i> Retour à l'accueil
-                </a>
+            <div class="mt-6 flex items-center gap-4">
+                <div class="flex-1 h-px bg-gray-200"></div>
+                <span class="text-gray-400 text-xs font-bold uppercase tracking-wider">OU</span>
+                <div class="flex-1 h-px bg-gray-200"></div>
             </div>
+
+            <div class="mt-6">
+                <button type="button" class="btn-google">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5">
+                    Continuer avec Google
+                </button>
+            </div>
+
+            <p class="text-center mt-8 text-gray-500 text-sm font-medium">
+                Déjà un compte ? <a href="{{ url('connexion') }}" class="text-[#27ae60] font-bold hover:underline">Se connecter</a>
+            </p>
         </div>
+
+        <a href="{{ url('/') }}" class="mt-8 text-white/80 hover:text-white text-sm font-medium transition-colors flex items-center gap-2">
+            <i class="fas fa-arrow-left"></i> Retour à l'accueil
+        </a>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loader = document.getElementById('page-loader');
-            const body = document.getElementById('body-el');
-            if (loader) { loader.style.display = 'none'; }
-            if (body) { body.classList.remove('prevent-flash'); body.classList.add('loaded'); }
-            document.querySelectorAll('.role-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('selected'));
-                    this.classList.add('selected');
-                    this.querySelector('input').checked = true;
-                });
-            });
-        });
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            const icon = document.getElementById('eye-icon');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                pwd.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
     </script>
 </body>
 </html>

@@ -40,7 +40,7 @@ $success = '';
             
             <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href="{{ url('/') }}"">
                 <img src="/logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#27ae60]">
-                <span class="text-4xl font-brand text-[#27ae60] hidden sm:block">La Réussite</span>
+                <div class="hidden sm:flex flex-col justify-center mt-1"><span class="text-4xl font-brand text-[#27ae60] leading-none">La Réussite</span><span class="text-[0.65rem] text-[#F9A825] uppercase tracking-[0.25em] font-black pl-1 mt-0.5">Agronomique</span></div>
             </div>
             
             <nav class="hidden md:flex items-center gap-8 font-bold text-sm uppercase">
@@ -97,7 +97,7 @@ $success = '';
             <div>
                 <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
                     <img src="/logo-reussite.png" class="w-12 h-12 rounded-full border border-white/20">
-                    <span class="text-2xl font-brand text-[#27ae60]">La Réussite</span>
+                    <div class="flex flex-col justify-center mt-1"><span class="text-2xl font-brand text-[#27ae60] leading-none">La Réussite</span><span class="text-[0.5rem] text-[#F9A825] uppercase tracking-[0.25em] font-black pl-0.5">Agronomique</span></div>
                 </div>
                 <p class="text-gray-400 text-sm leading-relaxed">
                     Votre plateforme innovante de produits agroalimentaires frais et biologiques, directement de la ferme à votre assiette.

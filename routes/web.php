@@ -26,7 +26,7 @@ Route::get('/produits', [ProduitController::class, 'index'])->name('produits.ind
 Route::get('/promos', [ProduitController::class, 'promos'])->name('promos.index');
 
 // Profils (Dashboard utilisateur)
-Route::middleware('auth')->group(function () {
+Route::group(function () {
     Route::get('/profil', [DashboardController::class, 'profil'])->name('profil');
     Route::get('/livreur', [DashboardController::class, 'livreur'])->name('livreur');
     Route::get('/vendeur', [DashboardController::class, 'vendeur'])->name('vendeur');
@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin
-Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/produits', [AdminController::class, 'produits'])->name('produits.index');
     Route::get('/promos', [AdminController::class, 'promos'])->name('promos.index');

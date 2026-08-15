@@ -31,7 +31,7 @@ $success = '';
             
             <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href="{{ url('/') }}"">
                 <img src="/logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#27ae60]">
-                <span class="text-4xl font-brand text-[#27ae60] hidden sm:block">La Réussite</span>
+                <div class="hidden sm:flex flex-col justify-center mt-1"><span class="text-4xl font-brand text-[#27ae60] leading-none">La Réussite</span><span class="text-[0.65rem] text-[#F9A825] uppercase tracking-[0.25em] font-black pl-1 mt-0.5">Agronomique</span></div>
             </div>
             
             <nav class="hidden md:flex items-center gap-8 font-bold text-sm uppercase">
@@ -122,25 +122,81 @@ $success = '';
         var isConnected = <?php echo $is_connected ? 'true' : 'false'; ?>;
         var userInitial = "<?php echo $initiale; ?>"; // On récupère l'initiale PHP
 
-        // 2. Logique du carrousel
-        const carouselImages = ["hero1.jpg", "hero2.jpg", "hero3.jpg", "hero4.jpg", "hero5.jpg"];
+                // 2. Logique du carrousel
+        const carouselImages = ["/hero1.jpg", "/hero2.jpg", "/hero3.jpg", "/hero4.jpg", "/hero5.jpg"];
         const carousel = document.getElementById('hero-carousel');
+        const dotsContainer = document.getElementById('carousel-dots');
         
         carouselImages.forEach((img, i) => {
-            const opacityClass = i === 0 ? 'opacity-60' : 'opacity-0';
-            carousel.innerHTML += `<img id="slide-${i}" src="${img}" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${opacityClass}">`;
+            const opacityClass = i === 0 ? 'opacity-100' : 'opacity-0';
+            
+            const slideHTML = `
+                <div id="slide-${i}" class="absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${opacityClass}">
+                    <img src="${img}" class="absolute inset-0 w-full h-full object-cover blur-3xl opacity-50 scale-110">
+                    <img src="${img}" class="absolute inset-0 w-full h-full object-contain drop-shadow-2xl">
+                </div>
+            `;
+            carousel.innerHTML += slideHTML;
+            
+            const dotClass = i === 0 ? 'bg-[#27ae60] w-6' : 'bg-white/50 w-3 hover:bg-white';
+            if (dotsContainer) {
+                dotsContainer.innerHTML += `<button id="dot-${i}" onclick="goToSlide(${i})" class="h-3 rounded-full transition-all duration-300 ${dotClass}"></button>`;
+            }
         });
 
         let currentSlide = 0;
-        setInterval(() => {
-            const currentEl = document.getElementById(`slide-${currentSlide}`);
-            if(currentEl) currentEl.classList.replace('opacity-60', 'opacity-0');
+        let slideInterval;
+
+        function updateSlide(newIndex) {
+            const oldSlide = document.getElementById(`slide-${currentSlide}`);
+            const oldDot = document.getElementById(`dot-${currentSlide}`);
+            if(oldSlide) oldSlide.classList.replace('opacity-100', 'opacity-0');
+            if(oldDot) {
+                oldDot.classList.replace('bg-[#27ae60]', 'bg-white/50');
+                oldDot.classList.replace('w-6', 'w-3');
+            }
             
-            currentSlide = (currentSlide + 1) % carouselImages.length;
+            currentSlide = newIndex;
             
-            const nextEl = document.getElementById(`slide-${currentSlide}`);
-            if(nextEl) nextEl.classList.replace('opacity-0', 'opacity-60');
-        }, 4000);
+            const nextSlide = document.getElementById(`slide-${currentSlide}`);
+            const nextDot = document.getElementById(`dot-${currentSlide}`);
+            if(nextSlide) nextSlide.classList.replace('opacity-0', 'opacity-100');
+            if(nextDot) {
+                nextDot.classList.replace('bg-white/50', 'bg-[#27ae60]');
+                nextDot.classList.replace('hover:bg-white', 'bg-[#27ae60]'); // fallback
+                nextDot.classList.replace('w-3', 'w-6');
+            }
+        }
+
+        function nextSlide() {
+            updateSlide((currentSlide + 1) % carouselImages.length);
+            resetInterval();
+        }
+
+        function prevSlide() {
+            updateSlide((currentSlide - 1 + carouselImages.length) % carouselImages.length);
+            resetInterval();
+        }
+
+        function goToSlide(index) {
+            if (index !== currentSlide) {
+                updateSlide(index);
+                resetInterval();
+            }
+        }
+
+        function startInterval() {
+            slideInterval = setInterval(() => {
+                updateSlide((currentSlide + 1) % carouselImages.length);
+            }, 5000);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        startInterval();
     </script>
     
     <script src="/script.js"></script>
