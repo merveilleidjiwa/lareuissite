@@ -1,49 +1,9 @@
 <?php
-session_start();
-require_once 'db.php';
-
-// Créer la table livreurs si elle n'existe pas (migration auto)
-try {
-    $pdo->exec("CREATE TABLE IF NOT EXISTS livreurs (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        nom VARCHAR(255) NOT NULL,
-        telephone VARCHAR(20) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL,
-        date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )");
-} catch (PDOException $e) { /* Table existe déjà */ }
-
-$message = "";
-$erreur = "";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nom = htmlspecialchars(trim($_POST['nom'] ?? ''));
-    $telephone = trim($_POST['telephone'] ?? '');
-    $password = $_POST['password'] ?? '';
-    $password_confirm = $_POST['password_confirm'] ?? '';
-
-    if (empty($nom) || empty($telephone) || empty($password)) {
-        $erreur = "Tous les champs sont obligatoires.";
-    } elseif (strlen($password) < 4) {
-        $erreur = "Le mot de passe doit contenir au moins 4 caractères.";
-    } elseif ($password !== $password_confirm) {
-        $erreur = "Les mots de passe ne correspondent pas.";
-    } else {
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        try {
-            $stmt = $pdo->prepare("INSERT INTO livreurs (nom, telephone, password) VALUES (?, ?, ?)");
-            $stmt->execute([$nom, $telephone, $password_hash]);
-            $message = "success";
-        } catch (PDOException $e) {
-            if ($e->getCode() == 23000) {
-                $erreur = "Ce numéro de téléphone est déjà utilisé.";
-            } else {
-                $erreur = "Erreur lors de l'inscription. Réessayez.";
-            }
-        }
-    }
-}
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

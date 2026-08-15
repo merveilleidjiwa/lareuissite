@@ -1,59 +1,9 @@
 <?php
-session_start();
-require_once 'db.php';
-
-$erreur = "";
-
-// Créer la table livreurs si elle n'existe pas (migration auto)
-try {
-    $pdo->exec("CREATE TABLE IF NOT EXISTS livreurs (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        nom VARCHAR(255) NOT NULL,
-        telephone VARCHAR(20) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL,
-        date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )");
-} catch (PDOException $e) { /* Table existe déjà */ }
-
-// --- LOGIQUE DE CONNEXION LIVREUR (téléphone + mot de passe) ---
-if (isset($_POST['login_livreur'])) {
-    $telephone = trim($_POST['telephone'] ?? '');
-    $password = $_POST['password'] ?? '';
-    $stmt = $pdo->prepare("SELECT * FROM livreurs WHERE telephone = ?");
-    $stmt->execute([$telephone]);
-    $livreur = $stmt->fetch();
-    if ($livreur && password_verify($password, $livreur['password'])) {
-        $_SESSION['livreur_auth'] = true;
-        $_SESSION['livreur_nom'] = $livreur['nom'];
-        $_SESSION['livreur_id'] = $livreur['id'];
-    } else {
-        $erreur = "Téléphone ou mot de passe incorrect.";
-    }
-}
-
-// --- LOGIQUE DE DÉCONNEXION ---
-if (isset($_GET['logout'])) { session_destroy(); header("Location: livreur.php"); exit; }
-
-// --- LOGIQUE DE VALIDATION PAR LE LIVREUR (MYSQL) ---
-if (isset($_POST['finaliser_livraison']) && isset($_SESSION['livreur_auth'])) {
-    $id_cmd = $_POST['id_commande'];
-    
-    // ✅ Mise à jour du statut dans la base de données
-    $sql = "UPDATE commandes SET statut = 'Livré' WHERE id = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id_cmd]);
-    
-    header("Location: livreur.php"); exit;
-}
-
-// --- RÉCUPÉRATION DES MISSIONS DEPUIS MYSQL ---
-// On récupère les commandes qui sont "En cours de livraison"
-$missions = [];
-if (isset($_SESSION['livreur_auth'])) {
-    $stmt = $pdo->query("SELECT * FROM commandes WHERE statut LIKE '%En cours de livraison%' ORDER BY date_commande DESC");
-    $missions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

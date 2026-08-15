@@ -1,26 +1,9 @@
 <?php
-session_start();
-require_once 'db.php';
-
-// Sécurité : si pas connecté, retour à l'accueil
-if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit;
-}
-
-$user_nom = $_SESSION['user_nom'];
-$initiale = strtoupper(substr($user_nom, 0, 1));
-
-// On récupère les infos complètes depuis la base
-$stmt = $pdo->prepare("SELECT email, telephone, date_inscription FROM users WHERE id = ?");
-$stmt->execute([$_SESSION['user_id']]);
-$user_infos = $stmt->fetch();
-if (!$user_infos) {
-    session_destroy();
-    header("Location: connexion.php");
-    exit;
-}
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

@@ -1,11 +1,9 @@
-<?php 
-session_start(); 
-// Détection de la connexion
-$is_connected = isset($_SESSION['user_id']);
-$user_nom = $is_connected ? $_SESSION['user_nom'] : "";
-$user_role = $is_connected ? $_SESSION['user_role'] : "";
-$initiale = $is_connected ? strtoupper(substr($user_nom, 0, 1)) : "";
+<?php
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

@@ -1,66 +1,9 @@
 <?php
-session_start();
-
-$fichier_vips = 'vips.json'; 
-if (!file_exists($fichier_vips)) { file_put_contents($fichier_vips, json_encode([])); }
-
-if (isset($_GET['logout_vip'])) { unset($_SESSION['vip_connecte']); header("Location: vip.php"); exit; }
-
-// --- 1. INSCRIPTION VIP (Avec redirection) ---
-if (isset($_POST['register_vip'])) {
-    $nom = trim($_POST['nom']);
-    $telephone = trim($_POST['telephone']);
-    $password = $_POST['password'];
-
-    $vips = json_decode(file_get_contents($fichier_vips), true) ?: [];
-    
-    $existe = false;
-    foreach($vips as $v) { if($v['telephone'] === $telephone) { $existe = true; break; } }
-
-    if ($existe) {
-        $erreur_reg = "Ce numéro est déjà membre VIP. Connectez-vous.";
-    } else {
-        $vips[] = [
-            'nom' => htmlspecialchars($nom),
-            'telephone' => htmlspecialchars($telephone),
-            'password' => password_hash($password, PASSWORD_DEFAULT)
-        ];
-        file_put_contents($fichier_vips, json_encode($vips, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-        
-        // REDIRECTION AUTOMATIQUE VERS LA CONNEXION VIP
-        $_SESSION['message_reg'] = "Compte VIP créé ! Vous pouvez entrer dans le Club.";
-        header("Location: vip.php?action=login");
-        exit;
-    }
-}
-
-// --- 2. CONNEXION VIP ---
-if (isset($_POST['login_vip'])) {
-    $telephone = trim($_POST['telephone']);
-    $password = $_POST['password'];
-
-    $vips = json_decode(file_get_contents($fichier_vips), true) ?: [];
-    $connecte = false;
-
-    foreach($vips as $v) {
-        if($v['telephone'] === $telephone && password_verify($password, $v['password'])) {
-            $_SESSION['vip_connecte'] = true;
-            $_SESSION['vip_nom'] = $v['nom'];
-            $connecte = true;
-            header("Location: vip.php"); exit;
-        }
-    }
-    if (!$connecte) { $erreur_login = "Numéro ou mot de passe incorrect."; }
-}
-
-$message_reg = '';
-if (isset($_SESSION['message_reg'])) {
-    $message_reg = $_SESSION['message_reg'];
-    unset($_SESSION['message_reg']);
-}
-
-$action = isset($_GET['action']) ? $_GET['action'] : 'login';
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

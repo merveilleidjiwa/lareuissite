@@ -1,49 +1,9 @@
 <?php
-require_once 'db.php'; 
-
-$message = "";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $prenom = htmlspecialchars(trim($_POST['prenom'] ?? ''));
-    $nom = htmlspecialchars(trim($_POST['nom'] ?? ''));
-    $date_naissance = !empty($_POST['date_naissance']) ? $_POST['date_naissance'] : null;
-    $email = htmlspecialchars(trim($_POST['email'] ?? ''));
-    $telephone = trim($_POST['telephone'] ?? '');
-    $role = in_array($_POST['role'] ?? '', ['client', 'vendeur']) ? $_POST['role'] : 'client';
-    $password = $_POST['password'] ?? '';
-    $password_confirm = $_POST['password_confirm'] ?? '';
-
-    if (empty($prenom) || empty($nom)) {
-        $message = "Le prénom et le nom sont obligatoires.";
-    } elseif (empty($email) || empty($telephone)) {
-        $message = "L'email et le téléphone sont obligatoires.";
-    } elseif (strlen($password) < 4) {
-        $message = "Le mot de passe doit contenir au moins 4 caractères.";
-    } elseif ($password !== $password_confirm) {
-        $message = "Les mots de passe ne correspondent pas.";
-    } else {
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        try {
-            $cols = $pdo->query("SHOW COLUMNS FROM users")->fetchAll(PDO::FETCH_COLUMN);
-            if (in_array('prenom', $cols) && in_array('date_naissance', $cols)) {
-                $stmt = $pdo->prepare("INSERT INTO users (prenom, nom, email, telephone, date_naissance, mot_de_passe, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                $stmt->execute([$prenom, $nom, $email, $telephone, $date_naissance ?: null, $password_hash, $role]);
-            } else {
-                $stmt = $pdo->prepare("INSERT INTO users (nom, email, telephone, mot_de_passe, role) VALUES (?, ?, ?, ?, ?)");
-                $stmt->execute([trim($prenom . ' ' . $nom), $email, $telephone, $password_hash, $role]);
-            }
-            $message = "success";
-        } catch (PDOException $e) {
-            error_log("Inscription: " . $e->getMessage());
-            if ($e->getCode() == 23000) { 
-                $message = "L'email est déjà utilisé par un autre compte.";
-            } else {
-                $message = "Une erreur est survenue. Vérifiez vos informations ou réessayez.";
-            }
-        }
-    }
-}
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

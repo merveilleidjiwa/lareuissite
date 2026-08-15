@@ -1,74 +1,9 @@
 <?php
-session_start();
-if (!isset($_SESSION['admin_connecte'])) { header("Location: admin.php"); exit; }
-
-require_once 'db.php'; // On appelle ton pont MySQL
-$dossier_images = 'uploads/';
-
-// On récupère les produits depuis la BASE DE DONNÉES au lieu du JSON
-$stmt = $pdo->query("SELECT * FROM produits");
-$produits = $stmt->fetchAll();
-
-// AJOUTER UN PRODUIT
-if (isset($_POST['ajouter_produit'])) {
-    $nom = $_POST['nom'];
-    $description = $_POST['description'];
-    $categorie = $_POST['categorie'];
-    
-    // Initialisation par défaut pour éviter le 0.00
-    $sous_categorie = NULL;
-    $tarifs_json = NULL;
-    $prix_final = (int)$_POST['prix_standard']; 
-
-    // Logique spécifique si c'est de la viande
-    if ($categorie === 'Viandes et Poissons') {
-        $sous_categorie = $_POST['sous_categorie'];
-        if ($sous_categorie === 'viande') {
-            $data_tarifs = [
-                'male' => (int)$_POST['prix_male'],
-                'femelle' => (int)$_POST['prix_femelle'],
-                'abattu' => (int)$_POST['prix_abattu']
-            ];
-            $tarifs_json = json_encode($data_tarifs);
-            $prix_final = (int)$_POST['prix_abattu']; // On prend le prix abattu comme base
-        }
-    }
-
-    // Gestion de l'image (pour éviter le NULL)
-    $image_path = NULL;
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $nom_image = time() . '_' . basename($_FILES['image']['name']);
-        if (move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . $nom_image)) {
-            $image_path = 'uploads/' . $nom_image;
-        }
-    }
-
-    // Requête SQL pour insérer le produit dans la BASE DE DONNÉES
-    $sql = "INSERT INTO produits (nom, description, prix, image, categorie, tarifs, sous_categorie, statut) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, 'actif')";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$nom, $description, $prix_final, $image_path, $categorie, $tarifs_json, $sous_categorie]);
-    
-    header("Location: admin_produits.php"); exit;
-}
-
-// SUPPRIMER UN PRODUIT
-if (isset($_POST['supprimer_produit'])) {
-    $id_a_supprimer = (int)$_POST['id_produit'];
-    
-    // 1. On cherche le chemin de l'image pour la supprimer du dossier
-    $stmt = $pdo->prepare("SELECT image FROM produits WHERE id = ?");
-    $stmt->execute([$id_a_supprimer]);
-    $p = $stmt->fetch();
-    if ($p && file_exists($p['image'])) { unlink($p['image']); }
-
-    // 2. On supprime la ligne dans MySQL
-    $stmt = $pdo->prepare("DELETE FROM produits WHERE id = ?");
-    $stmt->execute([$id_a_supprimer]);
-
-    header("Location: admin_produits.php"); exit;
-}
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

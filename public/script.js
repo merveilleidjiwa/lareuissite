@@ -626,7 +626,6 @@ function injecterNavigation() {
 
     // 1. Détecter la page actuelle
     const path = window.location.pathname;
-    const page = path.split("/").pop() || "/";
 
     // 2. Définir les onglets
     const liens = [
@@ -639,7 +638,8 @@ function injecterNavigation() {
     // 3. Construire le HTML des onglets
     let htmlContent = '';
     liens.forEach(lien => {
-        const isActive = (page === lien.url) ? 'text-[#27ae60] border-b-2 border-[#27ae60]' : 'text-gray-600 hover:text-[#27ae60]';
+        // Compare the full path instead of just the pop() value
+        const isActive = (path === lien.url) ? 'text-[#27ae60] border-b-2 border-[#27ae60]' : 'text-gray-600 hover:text-[#27ae60]';
         const classeSpeciale = lien.special || '';
         htmlContent += `<a href="${lien.url}" class="pb-1 transition-all font-bold ${isActive} ${classeSpeciale}">${lien.nom}</a>`;
     });

@@ -1,61 +1,9 @@
 <?php
-session_start();
-require_once 'db.php'; // Connexion à reussite_db
-
-// --- LOGIQUE DE DÉCONNEXION ---
-if (isset($_GET['logout'])) { 
-    session_destroy(); 
-    header("Location: admin.php"); 
-    exit; 
-}
-
-// --- TRAITEMENT CHANGEMENT DE STATUT ---
-if (isset($_POST['changer_statut'])) {
-    $id_cmd = $_POST['id_commande'];
-    $nouveau_statut = $_POST['changer_statut'];
-    
-    $sql = "UPDATE commandes SET statut = ? WHERE id = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$nouveau_statut, $id_cmd]);
-    
-    header("Location: admin.php"); exit;
-}
-
-// --- CONNEXION ADMIN (Table 'admins') ---
-if (isset($_POST['login_admin'])) {
-    $telephone = trim($_POST['telephone']);
-    $password = $_POST['password'];
-
-    // On cherche dans la table admins spécifiquement
-    $stmt = $pdo->prepare("SELECT * FROM admins WHERE telephone = ?");
-    $stmt->execute([$telephone]);
-    $admin = $stmt->fetch();
-
-    // Vérification du mot de passe (haché avec password_hash)
-    if ($admin && password_verify($password, $admin['password'])) {
-        $_SESSION['admin_connecte'] = true;
-        $_SESSION['admin_nom'] = $admin['nom']; 
-        header("Location: admin.php"); exit;
-    }
-    $erreur_login = "Identifiants incorrects.";
-}
-
-// --- RÉCUPÉRATION DES DONNÉES DEPUIS MYSQL ---
-// 1. Les Produits (pour la validation vendeur)
-$query_prod = $pdo->query("SELECT * FROM produits");
-$produits = $query_prod->fetchAll(PDO::FETCH_ASSOC);
-
-// 2. Les Commandes (pour la liste Live)
-$query_cmd = $pdo->query("SELECT * FROM commandes ORDER BY date_commande DESC");
-$cmds = $query_cmd->fetchAll(PDO::FETCH_ASSOC);
-
-// --- VALIDATION PRODUIT VENDEUR ---
-if (isset($_SESSION['admin_connecte']) && isset($_POST['valider_produit'])) {
-    $id_prod = (int)$_POST['id_v'];
-    $pdo->prepare("UPDATE produits SET statut = 'actif' WHERE id = ?")->execute([$id_prod]);
-    header("Location: admin.php"); exit;
-}
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

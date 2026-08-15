@@ -1,33 +1,9 @@
 <?php
-session_start();
-require_once 'db.php';
-
-$erreur = "";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = htmlspecialchars(trim($_POST['email']));
-    $password = $_POST['password'];
-
-    try {
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([$email]);
-        $user = $stmt->fetch();
-
-        if ($user && password_verify($password, $user['mot_de_passe'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_nom'] = !empty($user['prenom']) ? trim($user['prenom'] . ' ' . ($user['nom'] ?? '')) : ($user['nom'] ?? '');
-            $_SESSION['user_email'] = $user['email'];
-            $_SESSION['user_role'] = $user['role'];
-            header("Location: index.php");
-            exit;
-        } else {
-            $erreur = "Email ou mot de passe incorrect.";
-        }
-    } catch (PDOException $e) {
-        $erreur = "Erreur technique. Réessayez.";
-    }
-}
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

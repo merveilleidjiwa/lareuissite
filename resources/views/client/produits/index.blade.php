@@ -1,9 +1,9 @@
-<?php 
-session_start(); 
-$is_connected = isset($_SESSION['user_id']);
-$user_nom = $is_connected ? $_SESSION['user_nom'] : "";
-$initiale = $is_connected ? strtoupper(substr($user_nom, 0, 1)) : "";
+<?php
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 
 
 

@@ -1,53 +1,9 @@
 <?php
-session_start();
-require_once 'db.php'; // Connexion à reussite_db
-
-if (!isset($_SESSION['admin_connecte'])) { 
-    header("Location: admin.php"); 
-    exit; 
-}
-
-// 1. RÉCUPÉRATION DES PRODUITS DEPUIS MYSQL
-$query = $pdo->query("SELECT * FROM produits ORDER BY nom ASC");
-$produits = $query->fetchAll(PDO::FETCH_ASSOC);
-
-// 2. LOGIQUE POUR ACTIVER UNE PROMO
-if (isset($_POST['creer_promo'])) {
-    $nom_promo = trim($_POST['nom_promo']); 
-    $pourcentage = (int)$_POST['pourcentage'];
-    $ids = $_POST['produits_promo'] ?? [];
-
-    if (!empty($ids)) {
-        // On transforme le tableau d'IDs en une liste pour SQL : (1, 4, 7)
-        $liste_ids = implode(',', array_map('intval', $ids));
-        
-        $sql = "UPDATE produits SET 
-                en_promo = 1, 
-                pourcentage_promo = ?, 
-                nom_promo = ? 
-                WHERE id IN ($liste_ids)";
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$pourcentage, $nom_promo]);
-    }
-    header("Location: admin_promos.php"); exit;
-}
-
-// 3. LOGIQUE POUR ARRÊTER UNE PROMO
-if (isset($_POST['supprimer_promo'])) {
-    $nom_a_supprimer = $_POST['nom_a_supprimer'];
-    
-    $sql = "UPDATE produits SET 
-            en_promo = 0, 
-            pourcentage_promo = 0, 
-            nom_promo = NULL 
-            WHERE nom_promo = ?";
-            
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$nom_a_supprimer]);
-    header("Location: admin_promos.php"); exit;
-}
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

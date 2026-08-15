@@ -1,49 +1,9 @@
 <?php
-session_start();
-require_once 'db.php'; // On utilise la base de données maintenant
-
-$dossier_images = 'uploads/';
-
-// --- SÉCURITÉ : Vérification de l'accès ---
-// Si le vendeur n'est pas connecté ou n'est pas un vendeur, on le renvoie à la connexion
-if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'vendeur') {
-    header("Location: connexion.php");
-    exit;
-}
-
-$vendeur_id = $_SESSION['user_id'];
-$vendeur_nom = $_SESSION['user_nom'];
-
-// --- LOGIQUE AJOUT PRODUIT (SQL) ---
-if (isset($_POST['ajouter_produit'])) {
-    $nom = trim(htmlspecialchars($_POST['nom']));
-    $prix = (int)($_POST['prix_standard'] ?? 0);
-    $categorie = $_POST['categorie'];
-    $description = htmlspecialchars($_POST['description']);
-    
-    // Gestion de l'image
-    $image_path = 'img/default-product.png'; // Image par défaut
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        if (!is_dir($dossier_images)) { mkdir($dossier_images, 0777, true); }
-        $nom_img = time() . '_' . basename($_FILES['image']['name']);
-        move_uploaded_file($_FILES['image']['tmp_name'], $dossier_images . $nom_img);
-        $image_path = $dossier_images . $nom_img;
-    }
-
-    try {
-        $stmt = $pdo->prepare("INSERT INTO produits (nom, prix, categorie, description, image, vendeur_id, statut) VALUES (?, ?, ?, ?, ?, ?, 'en_attente')");
-        $stmt->execute([$nom, $prix, $categorie, $description, $image_path, $vendeur_id]);
-        $message_v = "Produit envoyé à l'Admin pour validation !";
-    } catch (PDOException $e) {
-        $erreur_v = "Erreur lors de l'ajout : " . $e->getMessage();
-    }
-}
-
-// --- RÉCUPÉRATION DES PRODUITS DU VENDEURPUIS LA BASE ---
-$stmt = $pdo->prepare("SELECT * FROM produits WHERE vendeur_id = ? ORDER BY id DESC");
-$stmt->execute([$vendeur_id]);
-$mes_produits = $stmt->fetchAll();
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">

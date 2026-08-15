@@ -1,18 +1,9 @@
 <?php
-session_start();
-if (!isset($_SESSION['admin_connecte'])) { header("Location: admin.php"); exit; }
-
-require_once 'db.php';
-
-// 1. Calcul du Chiffre d'Affaire et Nombre de commandes via MySQL
-$res = $pdo->query("SELECT SUM(total) as totalCA, COUNT(*) as nbCmd FROM commandes")->fetch();
-$totalCA = $res['totalCA'] ?? 0;
-$nbCmd = $res['nbCmd'] ?? 0;
-
-// 2. Récupérer l'historique depuis MySQL
-$stmt = $pdo->query("SELECT id, total, quartier, date_commande FROM commandes ORDER BY date_commande DESC");
-$commandes_db = $stmt->fetchAll();
+$erreur = '';
+$message = '';
+$success = '';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
