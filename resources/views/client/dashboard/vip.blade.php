@@ -93,12 +93,12 @@ $action = isset($_GET['action']) ? $_GET['action'] : 'login';
 
     <header class="sticky top-0 z-50 bg-gray-900 shadow-md border-b border-gray-800">
         <div class="max-w-[1200px] mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.php'">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href="{{ url('/') }}"">
                 <img src="logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#F9A825]">
                 <span class="text-4xl font-brand text-[#F9A825] hidden sm:block">Club VIP</span>
             </div>
             <nav class="hidden md:flex items-center gap-8 font-bold text-sm uppercase">
-                <a href="index.php" class="text-gray-300 hover:text-[#F9A825] transition-colors">Retour public</a>
+                <a href="{{ url('/') }}" class="text-gray-300 hover:text-[#F9A825] transition-colors">Retour public</a>
                 <?php if (isset($_SESSION['vip_connecte'])): ?>
                     <a href="?logout_vip=1" class="text-red-500 bg-red-900/30 px-4 py-2 rounded-full hover:bg-red-500 hover:text-white transition-colors"><i class="fas fa-sign-out-alt"></i> Quitter</a>
                 <?php endif; ?>

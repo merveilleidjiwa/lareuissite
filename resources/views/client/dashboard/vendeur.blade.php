@@ -65,7 +65,7 @@ $mes_produits = $stmt->fetchAll();
             </div>
             <nav class="flex gap-4 items-center">
                 <span class="text-xs font-bold text-gray-400 uppercase hidden md:block">Boutique : <?php echo $vendeur_nom; ?></span>
-                <a href="logout.php" class="bg-red-50 text-red-500 px-4 py-2 rounded-xl text-xs font-bold">Quitter</a>
+                <a href="{{ url('logout') }}" class="bg-red-50 text-red-500 px-4 py-2 rounded-xl text-xs font-bold">Quitter</a>
             </nav>
         </div>
     </header>

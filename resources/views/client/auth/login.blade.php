@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="absolute top-20 left-20 w-64 h-64 rounded-full bg-white"></div>
                 <div class="absolute bottom-32 right-20 w-48 h-48 rounded-full bg-white"></div>
             </div>
-            <a href="index.php" class="relative flex items-center gap-3">
+            <a href="{{ url('/') }}" class="relative flex items-center gap-3">
                 <img src="logo-reussite.png" class="w-12 h-12 lg:w-14 lg:h-14 object-cover rounded-full border-2 border-white/40 shadow-xl" alt="La Réussite">
                 <span class="font-brand text-2xl lg:text-3xl text-white drop-shadow-sm">La Réussite</span>
             </a>
@@ -101,11 +101,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </form>
 
                     <p class="text-center mt-8 text-gray-500 text-sm">
-                        Pas encore de compte ? <a href="inscription.php" class="text-[#27ae60] font-bold hover:underline">S'inscrire</a>
+                        Pas encore de compte ? <a href="{{ url('inscription') }}" class="text-[#27ae60] font-bold hover:underline">S'inscrire</a>
                     </p>
                 </div>
 
-                <a href="index.php" class="block text-center mt-6 text-gray-400 hover:text-[#27ae60] text-sm transition-colors">
+                <a href="{{ url('/') }}" class="block text-center mt-6 text-gray-400 hover:text-[#27ae60] text-sm transition-colors">
                     <i class="fas fa-arrow-left mr-1"></i> Retour à l'accueil
                 </a>
             </div>

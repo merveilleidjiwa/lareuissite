@@ -57,7 +57,7 @@ if (isset($_POST['supprimer_promo'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-gray-50 p-6">
-    <a href="admin.php" class="text-orange-600 font-bold mb-6 block"><i class="fas fa-arrow-left"></i> RETOUR ACCUEIL</a>
+    <a href="{{ url('admin') }}" class="text-orange-600 font-bold mb-6 block"><i class="fas fa-arrow-left"></i> RETOUR ACCUEIL</a>
     
     <div class="grid lg:grid-cols-2 gap-8">
         <div class="bg-white p-8 rounded-[30px] shadow-lg">

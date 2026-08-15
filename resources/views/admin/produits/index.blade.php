@@ -102,7 +102,7 @@ if (isset($_POST['supprimer_produit'])) {
     </script>
 </head>
 <body class="bg-gray-50 p-6">
-    <a href="admin.php" class="text-green-600 font-bold mb-6 block"><i class="fas fa-arrow-left"></i> RETOUR ACCUEIL</a>
+    <a href="{{ url('admin') }}" class="text-green-600 font-bold mb-6 block"><i class="fas fa-arrow-left"></i> RETOUR ACCUEIL</a>
     
     <div class="grid lg:grid-cols-2 gap-8">
         <div class="bg-white p-8 rounded-[30px] shadow-lg">

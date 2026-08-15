@@ -23,16 +23,16 @@ $initiale = $is_connected ? strtoupper(substr($user_nom, 0, 1)) : "";
    <header class="sticky top-0 z-50 bg-white shadow-md">
         <div class="max-w-[1200px] mx-auto px-4 py-3 flex justify-between items-center">
             
-            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.php'">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href="{{ url('/') }}"">
                 <img src="logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#27ae60]">
                 <span class="text-4xl font-brand text-[#27ae60] hidden sm:block">La Réussite</span>
             </div>
             
             <nav class="hidden md:flex items-center gap-8 font-bold text-sm uppercase">
-                <a href="index.php" class="text-[#27ae60]">Accueil</a>
-                <a href="produits.php" class="hover:text-[#27ae60] transition-colors">Produits</a>
-                <a href="promos.php" class="text-red-500 hover:text-red-700 transition-colors animate-pulse"><i class="fas fa-fire"></i> Promos</a>
-                <a href="apropos.php" class="hover:text-[#27ae60] transition-colors">À Propos</a>
+                <a href="{{ url('/') }}" class="text-[#27ae60]">Accueil</a>
+                <a href="{{ url('produits') }}" class="hover:text-[#27ae60] transition-colors">Produits</a>
+                <a href="{{ url('promos') }}" class="text-red-500 hover:text-red-700 transition-colors animate-pulse"><i class="fas fa-fire"></i> Promos</a>
+                <a href="{{ url('apropos') }}" class="hover:text-[#27ae60] transition-colors">À Propos</a>
                 
                 <?php if($is_connected): ?>
                     <div class="relative group flex items-center gap-2 cursor-pointer bg-gray-50 px-3 py-1 rounded-full border border-gray-100">
@@ -45,22 +45,22 @@ $initiale = $is_connected ? strtoupper(substr($user_nom, 0, 1)) : "";
                             <p class="text-[9px] text-gray-400 uppercase tracking-widest mb-1">Session active</p>
                             <p class="text-xs font-black text-gray-800 mb-3 truncate"><?php echo $user_nom; ?></p>
                             <hr class="mb-2">
-                            <a href="profil.php" class="block py-2 text-xs hover:text-[#27ae60]"><i class="fas fa-user-circle mr-2"></i> Mon Profil</a>
+                            <a href="{{ url('profil') }}" class="block py-2 text-xs hover:text-[#27ae60]"><i class="fas fa-user-circle mr-2"></i> Mon Profil</a>
                             
                             <?php if($user_role === 'vendeur'): ?>
-                                <a href="vendeur.php" class="block py-2 text-xs hover:text-[#27ae60]"><i class="fas fa-store mr-2"></i> Ma Boutique</a>
+                                <a href="{{ url('vendeur') }}" class="block py-2 text-xs hover:text-[#27ae60]"><i class="fas fa-store mr-2"></i> Ma Boutique</a>
                             <?php elseif($user_role === 'admin'): ?>
-                                <a href="admin.php" class="block py-2 text-xs hover:text-yellow-600"><i class="fas fa-user-shield mr-2"></i> Admin</a>
+                                <a href="{{ url('admin') }}" class="block py-2 text-xs hover:text-yellow-600"><i class="fas fa-user-shield mr-2"></i> Admin</a>
                             <?php elseif($user_role === 'livreur'): ?>
-                                <a href="livreur.php" class="block py-2 text-xs hover:text-blue-500"><i class="fas fa-motorcycle mr-2"></i> Livraisons</a>
+                                <a href="{{ url('livreur') }}" class="block py-2 text-xs hover:text-blue-500"><i class="fas fa-motorcycle mr-2"></i> Livraisons</a>
                             <?php endif; ?>
 
-                            <a href="logout.php" class="block py-2 text-xs text-red-500 mt-2 border-t border-gray-50 font-bold"><i class="fas fa-sign-out-alt mr-2"></i> Déconnexion</a>
+                            <a href="{{ url('logout') }}" class="block py-2 text-xs text-red-500 mt-2 border-t border-gray-50 font-bold"><i class="fas fa-sign-out-alt mr-2"></i> Déconnexion</a>
                         </div>
                     </div>
                 <?php else: ?>
-                    <a href="inscription.php" class="hover:text-[#27ae60] transition-colors">S'inscrire</a>
-                    <a href="connexion.php" class="bg-[#27ae60] text-white px-6 py-2 rounded-full shadow-lg hover:scale-105 transition-all">Connexion</a>
+                    <a href="{{ url('inscription') }}" class="hover:text-[#27ae60] transition-colors">S'inscrire</a>
+                    <a href="{{ url('connexion') }}" class="bg-[#27ae60] text-white px-6 py-2 rounded-full shadow-lg hover:scale-105 transition-all">Connexion</a>
                 <?php endif; ?>
             </nav>
             
@@ -78,7 +78,7 @@ $initiale = $is_connected ? strtoupper(substr($user_nom, 0, 1)) : "";
             <div class="relative z-10 text-center px-4 animate-fade-up bg-black/40 p-10 rounded-3xl backdrop-blur-sm border border-white/10">
                 <h1 class="text-5xl md:text-7xl font-display text-white mb-6 tracking-wider shadow-black drop-shadow-2xl uppercase font-black">De la ferme à l'assiette</h1>
                 <p class="text-xl text-white mb-10 max-w-2xl mx-auto font-medium drop-shadow-md">Produits locaux ultra-frais, viandes préparées sur mesure et livraison rapide à Parakou.</p>
-                <a href="produits.php" class="bg-[#F9A825] text-[#333333] font-bold py-4 px-10 rounded-full text-lg uppercase tracking-wider hover:bg-white hover:text-[#27ae60] transition-all shadow-xl transform hover:scale-105 inline-block">Voir le Catalogue</a>
+                <a href="{{ url('produits') }}" class="bg-[#F9A825] text-[#333333] font-bold py-4 px-10 rounded-full text-lg uppercase tracking-wider hover:bg-white hover:text-[#27ae60] transition-all shadow-xl transform hover:scale-105 inline-block">Voir le Catalogue</a>
             </div>
         </section>
 
@@ -106,7 +106,7 @@ $initiale = $is_connected ? strtoupper(substr($user_nom, 0, 1)) : "";
             <h2 class="text-4xl font-display text-center text-[#333333] mb-10 tracking-wider">Nos Coups de Cœur ❤️</h2>
             <div id="home-products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"></div>
             <div class="text-center mt-12">
-                <a href="produits.php" class="inline-block border-2 border-[#27ae60] text-[#27ae60] font-bold py-3 px-8 rounded-full hover:bg-[#27ae60] hover:text-white transition-colors uppercase tracking-wider">Voir tout le catalogue</a>
+                <a href="{{ url('produits') }}" class="inline-block border-2 border-[#27ae60] text-[#27ae60] font-bold py-3 px-8 rounded-full hover:bg-[#27ae60] hover:text-white transition-colors uppercase tracking-wider">Voir tout le catalogue</a>
             </div>
         </section>
     </main>
@@ -175,7 +175,7 @@ $initiale = $is_connected ? strtoupper(substr($user_nom, 0, 1)) : "";
                     </div>
                 </div>
 
-                <a href="logout.php" class="w-full mt-10 bg-red-50 text-red-500 py-4 rounded-2xl font-bold uppercase text-[10px] hover:bg-red-500 hover:text-white transition-all text-center">
+                <a href="{{ url('logout') }}" class="w-full mt-10 bg-red-50 text-red-500 py-4 rounded-2xl font-bold uppercase text-[10px] hover:bg-red-500 hover:text-white transition-all text-center">
                     <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
                 </a>
             </div>

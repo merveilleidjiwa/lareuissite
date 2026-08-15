@@ -27,7 +27,7 @@
                 <a href="produits.html" class="hover:text-[#27ae60] transition-colors">Produits</a>
                 <a href="promos.html" class="text-red-500 hover:text-red-700 transition-colors animate-pulse-fast"><i class="fas fa-fire"></i> Promos</a>
                 <a href="apropos.html" class="hover:text-[#27ae60] transition-colors">À Propos</a>
-                <a href="admin.php" class="text-[#F9A825] hover:text-yellow-600 transition-colors">Admin</a>
+                <a href="{{ url('admin') }}" class="text-[#F9A825] hover:text-yellow-600 transition-colors">Admin</a>
             </nav>
             
             <button onclick="toggleCart()" class="relative p-2 text-[#333333] hover:text-[#27ae60] transition-colors cursor-pointer">

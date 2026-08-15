@@ -96,10 +96,10 @@ if (isset($_SESSION['admin_connecte']) && isset($_POST['valider_produit'])) {
                         </button>
                     </form>
                     <p class="text-center mt-8 text-gray-500 text-sm">
-                        Pas de compte admin ? <a href="ajouteadmin.php" class="text-[#27ae60] font-bold hover:underline">S'inscrire</a>
+                        Pas de compte admin ? <a href="{{ url('admin/ajouter-admin') }}" class="text-[#27ae60] font-bold hover:underline">S'inscrire</a>
                     </p>
                 </div>
-                <a href="index.php" class="block text-center mt-6 text-gray-400 hover:text-[#27ae60] text-sm transition-colors">
+                <a href="{{ url('/') }}" class="block text-center mt-6 text-gray-400 hover:text-[#27ae60] text-sm transition-colors">
                     <i class="fas fa-arrow-left mr-1"></i> Retour au site
                 </a>
             </div>
@@ -202,19 +202,19 @@ if (isset($_SESSION['admin_connecte']) && isset($_POST['valider_produit'])) {
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <a href="admin_produits.php" class="group bg-white p-10 rounded-[40px] shadow-lg hover:shadow-2xl transition-all border-b-[10px] border-green-500 text-center">
+                <a href="{{ url('admin/produits') }}" class="group bg-white p-10 rounded-[40px] shadow-lg hover:shadow-2xl transition-all border-b-[10px] border-green-500 text-center">
                     <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:bg-green-500 group-hover:text-white transition-all">
                         <i class="fas fa-boxes text-3xl"></i>
                     </div>
                     <h3 class="font-black text-gray-800 uppercase text-sm tracking-widest">Ajouter Produits</h3>
                 </a>
-                <a href="admin_promos.php" class="group bg-white p-10 rounded-[40px] shadow-lg hover:shadow-2xl transition-all border-b-[10px] border-red-500 text-center">
+                <a href="{{ url('admin/promos') }}" class="group bg-white p-10 rounded-[40px] shadow-lg hover:shadow-2xl transition-all border-b-[10px] border-red-500 text-center">
                     <div class="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:bg-red-500 group-hover:text-white transition-all">
                         <i class="fas fa-fire text-3xl"></i>
                     </div>
                     <h3 class="font-black text-gray-800 uppercase text-sm tracking-widest">Lancer Promo</h3>
                 </a>
-                <a href="admin_stats.php" class="group bg-white p-10 rounded-[40px] shadow-lg hover:shadow-2xl transition-all border-b-[10px] border-blue-500 text-center">
+                <a href="{{ url('admin/stats') }}" class="group bg-white p-10 rounded-[40px] shadow-lg hover:shadow-2xl transition-all border-b-[10px] border-blue-500 text-center">
                     <div class="w-20 h-20 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-white transition-all">
                         <i class="fas fa-chart-pie text-3xl"></i>
                     </div>

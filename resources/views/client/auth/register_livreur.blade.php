@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#27ae60]/10 blur-3xl"></div>
                 <div class="absolute bottom-32 left-20 w-48 h-48 rounded-full bg-[#F9A825]/10 blur-3xl"></div>
             </div>
-            <a href="index.php" class="relative flex items-center gap-3">
+            <a href="{{ url('/') }}" class="relative flex items-center gap-3">
                 <img src="logo-reussite.png" alt="" class="w-14 h-14 rounded-full object-cover border-2 border-white/40 shadow-xl">
                 <span class="font-brand text-2xl text-white">La Réussite</span>
                 <span class="text-[#27ae60] text-xs font-bold uppercase ml-2 bg-[#27ae60]/20 px-2 py-0.5 rounded"><i class="fas fa-motorcycle mr-1"></i> Livreur</span>
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Côté droit : formulaire -->
         <div class="flex-1 flex items-center justify-center p-6 lg:p-12">
             <div class="w-full max-w-md">
-                <a href="index.php" class="lg:hidden flex items-center gap-3 mb-8 text-white">
+                <a href="{{ url('/') }}" class="lg:hidden flex items-center gap-3 mb-8 text-white">
                     <img src="logo-reussite.png" alt="" class="w-10 h-10 rounded-full object-cover border-2 border-white/40">
                     <span class="font-brand text-xl">La Réussite Livreur</span>
                 </a>
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <i class="fas fa-check-circle text-3xl mb-2 text-[#27ae60]"></i>
                             <p class="font-bold mb-3">Compte livreur créé !</p>
                             <p class="text-sm text-gray-600 mb-4">Connectez-vous maintenant avec vos identifiants.</p>
-                            <a href="livreur.php" class="inline-block bg-[#27ae60] text-white px-6 py-2 rounded-xl font-bold text-sm hover:bg-[#219150] transition-colors">
+                            <a href="{{ url('livreur') }}" class="inline-block bg-[#27ae60] text-white px-6 py-2 rounded-xl font-bold text-sm hover:bg-[#219150] transition-colors">
                                 Se connecter à l'espace livreur
                             </a>
                         </div>
@@ -138,12 +138,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </form>
 
                     <p class="text-center mt-8 text-gray-500 text-sm">
-                        Déjà un compte ? <a href="livreur.php" class="text-[#27ae60] font-bold hover:underline">Se connecter</a>
+                        Déjà un compte ? <a href="{{ url('livreur') }}" class="text-[#27ae60] font-bold hover:underline">Se connecter</a>
                     </p>
                     <?php endif; ?>
                 </div>
 
-                <a href="livreur.php" class="block text-center mt-6 text-gray-500 hover:text-[#27ae60] text-sm transition-colors">
+                <a href="{{ url('livreur') }}" class="block text-center mt-6 text-gray-500 hover:text-[#27ae60] text-sm transition-colors">
                     <i class="fas fa-arrow-left mr-1"></i> Retour à la connexion livreur
                 </a>
             </div>

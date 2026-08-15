@@ -101,10 +101,10 @@ if (isset($_SESSION['livreur_auth'])) {
                         </button>
                     </form>
                     <p class="text-center mt-8 text-gray-500 text-sm">
-                        Pas de compte ? <a href="inscription_livreur.php" class="text-[#27ae60] font-bold hover:underline">S'inscrire</a>
+                        Pas de compte ? <a href="{{ url('inscription_livreur') }}" class="text-[#27ae60] font-bold hover:underline">S'inscrire</a>
                     </p>
                 </div>
-                <a href="index.php" class="block text-center mt-6 text-gray-500 hover:text-[#27ae60] text-sm transition-colors">
+                <a href="{{ url('/') }}" class="block text-center mt-6 text-gray-500 hover:text-[#27ae60] text-sm transition-colors">
                     <i class="fas fa-arrow-left mr-1"></i> Retour au site
                 </a>
             </div>

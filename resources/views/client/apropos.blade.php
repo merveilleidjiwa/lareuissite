@@ -32,17 +32,17 @@ $initiale = $is_connected ? strtoupper(substr($user_nom, 0, 1)) : "";
    <header class="sticky top-0 z-50 bg-white shadow-md">
         <div class="max-w-[1200px] mx-auto px-4 py-3 flex justify-between items-center">
             
-            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.php'">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href="{{ url('/') }}"">
                 <img src="logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#27ae60]">
                 <span class="text-4xl font-brand text-[#27ae60] hidden sm:block">La Réussite</span>
             </div>
             
             <nav class="hidden md:flex items-center gap-8 font-bold text-sm uppercase">
-                <a href="index.php" class="hover:text-[#27ae60] transition-colors">Accueil</a>
-                <a href="produits.php" class="hover:text-[#27ae60] transition-colors">Produits</a>
-                <a href="promos.php" class="text-red-500 hover:text-red-700 transition-colors animate-pulse-fast"><i class="fas fa-fire"></i> Promos</a>
-                <a href="apropos.php" class="hover:text-[#27ae60] transition-colors">À Propos</a>
-                <a href="admin.php" class="text-[#F9A825] hover:text-yellow-600 transition-colors">Admin</a>
+                <a href="{{ url('/') }}" class="hover:text-[#27ae60] transition-colors">Accueil</a>
+                <a href="{{ url('produits') }}" class="hover:text-[#27ae60] transition-colors">Produits</a>
+                <a href="{{ url('promos') }}" class="text-red-500 hover:text-red-700 transition-colors animate-pulse-fast"><i class="fas fa-fire"></i> Promos</a>
+                <a href="{{ url('apropos') }}" class="hover:text-[#27ae60] transition-colors">À Propos</a>
+                <a href="{{ url('admin') }}" class="text-[#F9A825] hover:text-yellow-600 transition-colors">Admin</a>
             </nav>
             
             <button onclick="toggleCart()" class="relative p-2 text-[#333333] hover:text-[#27ae60] transition-colors cursor-pointer">
@@ -101,10 +101,10 @@ $initiale = $is_connected ? strtoupper(substr($user_nom, 0, 1)) : "";
             <div>
                 <h4 class="text-lg font-bold mb-4 uppercase tracking-wider text-[#F9A825]">Navigation</h4>
                 <ul class="text-gray-400 space-y-2 text-sm">
-                    <li><a href="index.php" class="hover:text-white transition-colors">Accueil</a></li>
-                    <li><a href="produits.php" class="hover:text-white transition-colors">Nos Produits</a></li>
-                    <li><a href="promos.php" class="hover:text-white transition-colors text-red-400">Offres Spéciales</a></li>
-                    <li><a href="apropos.php" class="hover:text-white transition-colors">À Propos de nous</a></li>
+                    <li><a href="{{ url('/') }}" class="hover:text-white transition-colors">Accueil</a></li>
+                    <li><a href="{{ url('produits') }}" class="hover:text-white transition-colors">Nos Produits</a></li>
+                    <li><a href="{{ url('promos') }}" class="hover:text-white transition-colors text-red-400">Offres Spéciales</a></li>
+                    <li><a href="{{ url('apropos') }}" class="hover:text-white transition-colors">À Propos de nous</a></li>
                 </ul>
             </div>
 
