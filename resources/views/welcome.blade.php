@@ -1,3 +1,11 @@
+<?php
+if (!isset($is_connected)) $is_connected = false;
+if (!isset($user_nom)) $user_nom = '';
+if (!isset($initiale)) $initiale = '';
+if (!isset($erreur)) $erreur = '';
+if (!isset($message)) $message = '';
+if (!isset($success)) $success = '';
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
