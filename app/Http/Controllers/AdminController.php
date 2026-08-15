@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        return view('admin.dashboard');
+        $is_connected = true;
+        return view('admin.dashboard', ['is_connected' => $is_connected]);
     }
 
     public function produits()
