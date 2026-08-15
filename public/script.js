@@ -106,7 +106,7 @@ async function chargerProduits() {
     const promoContainer = document.getElementById('promo-products-container');
 
     try {
-        const response = await fetch('get_produits.php');
+        const response = await fetch('/get_produits');
         if (!response.ok) throw new Error("Fichier produits.json introuvable");
         const data = await response.json();
 
@@ -230,7 +230,7 @@ function openOptionsModal(productId) {
     // On vérifie si la variable existe ET si elle est à false
     if (typeof isConnected === 'undefined' || isConnected === false) {
         alert("🚨 Stop ! Pour commander ces délices, vous devez d'abord vous connecter.");
-        window.location.href = 'connexion.php';
+        window.location.href = '/connexion';
         return; 
     }
 
@@ -539,7 +539,7 @@ async function finaliserLaCommande(methode, ouvrirWhatsAppViaModal) {
     formData.append('statut', statutComplet);
     formData.append('frais_livraison', livraison.frais);
 
-    await fetch('sauvegarder_commande.php', { method: 'POST', body: formData });
+    await fetch('/sauvegarder_commande', { method: 'POST', body: formData });
 
     // 2. Enregistrement LOCAL pour le suivi client automatique
     localStorage.setItem('commande_active_id', commandeID);
@@ -609,7 +609,7 @@ setInterval(async () => {
     if (!id) return;
     try {
         // ✅ On interroge un nouveau fichier PHP que nous allons créer
-        const res = await fetch(`check_statut.php?id=${id}`);
+        const res = await fetch(`check_statut?id=${id}`);
         const nouveauStatut = await res.text();
         
         if (nouveauStatut && nouveauStatut !== localStorage.getItem('commande_active_statut')) {
@@ -626,14 +626,14 @@ function injecterNavigation() {
 
     // 1. Détecter la page actuelle
     const path = window.location.pathname;
-    const page = path.split("/").pop() || "index.php";
+    const page = path.split("/").pop() || "/";
 
     // 2. Définir les onglets
     const liens = [
-        { nom: 'Accueil', url: 'index.php' },
-        { nom: 'Produits', url: 'produits.php' },
-        { nom: 'Promos', url: 'promos.php', special: 'text-red-500 animate-pulse' },
-        { nom: 'À Propos', url: 'apropos.php' }
+        { nom: 'Accueil', url: '/' },
+        { nom: 'Produits', url: '/produits' },
+        { nom: 'Promos', url: '/promos', special: 'text-red-500 animate-pulse' },
+        { nom: 'À Propos', url: '/apropos' }
     ];
 
     // 3. Construire le HTML des onglets
@@ -661,8 +661,8 @@ function injecterNavigation() {
         // Boutons Inscription et Connexion ÉLOIGNÉS
         htmlContent += `
             <div class="flex items-center gap-6">
-                <a href="inscription.php" class="text-gray-400 hover:text-gray-800 transition-colors lowercase italic text-xs">S'inscrire</a>
-                <a href="connexion.php" class="bg-[#27ae60] text-white px-8 py-2.5 rounded-full shadow-lg hover:scale-105 transition-all text-xs font-bold uppercase tracking-widest">Connexion</a>
+                <a href="/inscription" class="text-gray-400 hover:text-gray-800 transition-colors lowercase italic text-xs">S'inscrire</a>
+                <a href="/connexion" class="bg-[#27ae60] text-white px-8 py-2.5 rounded-full shadow-lg hover:scale-105 transition-all text-xs font-bold uppercase tracking-widest">Connexion</a>
             </div>`;
     }
 
@@ -687,11 +687,11 @@ function injecterNavigation() {
 
     // 2. Récupération des infos via un petit fichier PHP
     try {
-        const response = await fetch('get_user_info.php');
+        const response = await fetch('/get_user_info');
         const user = await response.json();
 
         if(user.error) {
-            window.location.href = 'connexion.php';
+            window.location.href = '/connexion';
             return;
         }
 
