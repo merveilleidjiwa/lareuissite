@@ -55,6 +55,18 @@ $success = '';
 <body class="bg-gray-50 p-6">
     <a href="{{ url('admin') }}" class="text-green-600 font-bold mb-6 block"><i class="fas fa-arrow-left"></i> RETOUR ACCUEIL</a>
     
+    @if(session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
+    
+    @if(session('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <span class="block sm:inline">{{ session('error') }}</span>
+        </div>
+    @endif
+
     <div class="grid lg:grid-cols-2 gap-8">
         <div class="bg-white p-8 rounded-[30px] shadow-lg">
             <?php
@@ -70,6 +82,7 @@ $tarif_data = $tarif_content ? json_decode($tarif_content, true) : ['prix_km' =>
 <div class="bg-white p-6 rounded-[30px] shadow-lg border-l-8 border-blue-500 mb-8">
     <h3 class="font-bold uppercase text-xs text-blue-500 mb-4">Configuration Livraison</h3>
     <form method="POST" class="flex items-center gap-4">
+        @csrf
         <div class="flex-1">
             <label class="text-[10px] font-bold text-gray-400">PRIX PAR KILOMÈTRE (FCFA)</label>
             <input type="number" name="prix_km" value="<?php echo $tarif_data['prix_km']; ?>" class="w-full p-2 border rounded-xl font-black">
@@ -80,6 +93,7 @@ $tarif_data = $tarif_content ? json_decode($tarif_content, true) : ['prix_km' =>
 </div>
             <h2 class="text-2xl font-bold mb-6 text-green-600 uppercase">Ajouter un Produit</h2>
             <form method="POST" enctype="multipart/form-data" class="space-y-4">
+                @csrf
                 <input type="text" name="nom" placeholder="Nom du produit" required class="w-full p-3 border rounded-xl bg-gray-50">
                 <select name="categorie" id="select-cat" onchange="updateFormulairePrix()" required class="w-full p-3 border rounded-xl bg-gray-50">
                     <option value="">-- Catégorie --</option>
@@ -171,6 +185,7 @@ $tarif_data = $tarif_content ? json_decode($tarif_content, true) : ['prix_km' =>
                             </div>
                         </div>
                         <form method="POST" onsubmit="return confirm('Supprimer définitivement ce produit ?');">
+                            @csrf
                             <input type="hidden" name="id_produit" value="<?php echo $p['id']; ?>">
                             <button type="submit" name="supprimer_produit" class="text-red-300 hover:text-red-600 p-2 transition-colors">
                                 <i class="fas fa-trash-alt"></i>
