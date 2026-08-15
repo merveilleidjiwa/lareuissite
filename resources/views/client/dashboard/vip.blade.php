@@ -1,4 +1,10 @@
 <?php
+if (!isset($action)) $action = '';
+if (!isset($erreur_reg)) $erreur_reg = '';
+if (!isset($erreur_login)) $erreur_login = '';
+if (!isset($message_reg)) $message_reg = '';
+?>
+<?php
 if (!isset($_SESSION['vip_nom'])) $_SESSION['vip_nom'] = 'VIP';
 ?>
 <?php

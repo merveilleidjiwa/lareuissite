@@ -1,4 +1,9 @@
 <?php
+if (!isset($compteur)) $compteur = '';
+if (!isset($promos_actives)) $promos_actives = [];
+if (!isset($nom)) $nom = '';
+?>
+<?php
 if (!isset($produits)) $produits = [];
 ?>
 <?php

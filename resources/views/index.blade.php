@@ -1,4 +1,7 @@
 <?php
+if (!isset($user_role)) $user_role = '';
+?>
+<?php
 if (!isset($is_connected)) $is_connected = false;
 if (!isset($user_nom)) $user_nom = '';
 if (!isset($initiale)) $initiale = '';

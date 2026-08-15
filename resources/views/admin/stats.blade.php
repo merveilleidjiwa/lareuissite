@@ -1,4 +1,7 @@
 <?php
+if (!isset($commandes_db)) $commandes_db = [];
+?>
+<?php
 if (!isset($totalCA)) $totalCA = 150000;
 if (!isset($nbCmd)) $nbCmd = 24;
 if (!isset($cmds)) $cmds = [];

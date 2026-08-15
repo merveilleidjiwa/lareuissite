@@ -1,4 +1,8 @@
 <?php
+if (!isset($message_km)) $message_km = '';
+if (!isset($afficher)) $afficher = '';
+?>
+<?php
 if (!isset($tarif_data)) $tarif_data = ['prix_km' => 100];
 if (!isset($produits)) $produits = [];
 ?>

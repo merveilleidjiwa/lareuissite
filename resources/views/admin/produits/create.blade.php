@@ -8,6 +8,9 @@ if (!isset($success)) $success = '';
 ?>
 @extends('admin.layouts.master')
 
+<?php
+if (!isset($categories)) $categories = [];
+?>
 @section('title', 'Ajouter un Produit')
 
 @section('content')

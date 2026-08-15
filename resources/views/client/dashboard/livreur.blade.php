@@ -1,4 +1,9 @@
 <?php
+if (!isset($details)) $details = [];
+if (!isset($nomProd)) $nomProd = '';
+if (!isset($det)) $det = '';
+?>
+<?php
 if (!isset($missions)) $missions = [];
 ?>
 <?php

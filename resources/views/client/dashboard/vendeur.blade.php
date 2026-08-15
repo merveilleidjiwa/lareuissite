@@ -1,4 +1,7 @@
 <?php
+if (!isset($mes_produits)) $mes_produits = [];
+?>
+<?php
 if (!isset($vendeur_nom)) $vendeur_nom = 'Ma Boutique';
 if (!isset($message_v)) $message_v = '';
 if (!isset($produits)) $produits = [];
