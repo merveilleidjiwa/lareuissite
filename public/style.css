@@ -1,0 +1,124 @@
+/* Importation des belles polices */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+  background-color: #f4fbf7;
+  color: #333333;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+/* Anti-flash: évite le flash visuel au chargement */
+body.preload-flash { opacity: 0; }
+body.loaded-content { opacity: 1; transition: opacity 0.25s ease-out; }
+
+.font-display { font-family: 'Bebas Neue', sans-serif; }
+.font-brand { font-family: 'Pacifico', cursive; }
+
+/* === LOADER PAGE TRANSITION (Logo feuille) === */
+.animate-loader {
+  animation: loader-leaf 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+@keyframes loader-leaf {
+  0%, 100% { transform: scale(0.9) rotate(-5deg); opacity: 0.8; }
+  50% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+}
+.page-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f4fbf7;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.4s ease-out;
+}
+.page-transition-overlay.loaded {
+  opacity: 0;
+  pointer-events: none;
+}
+.page-transition-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.page-transition-overlay img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  animation: loader-leaf 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+.leaf-icon {
+  color: #27ae60;
+  font-size: 100px;
+  transform: scale(0);
+}
+.page-transition-overlay.active .leaf-icon {
+  animation: leaf-compose 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes leaf-compose {
+  0% { transform: scale(0) rotate(-90deg); opacity: 0; filter: blur(10px); }
+  40% { transform: scale(1.2) rotate(10deg); opacity: 1; filter: blur(0px); }
+  60% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0px); }
+  100% { transform: scale(0) rotate(90deg); opacity: 0; filter: blur(10px); }
+}
+
+/* === TEXTE DÉFILANT === */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  background-color: #F9A825;
+  color: white;
+  padding: 6px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.marquee-content {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+/* === EFFETS VISUELS === */
+.animate-fade-up {
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(40px);
+}
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-pulse-fast { animation: pulseFast 2s infinite; }
+@keyframes pulseFast {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 168, 37, 0.7); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(249, 168, 37, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 168, 37, 0); }
+}
+
+.animate-blink { animation: blink 1.5s infinite; }
+@keyframes blink {
+  0%, 100% { opacity: 1; color: #F9A825; text-shadow: 0 0 5px rgba(249, 168, 37, 0.5); }
+  50% { opacity: 0.7; color: #d84315; text-shadow: none; }
+}
+
+/* === CARTES PRODUITS === */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.product-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.product-image-container { overflow: hidden; }
+.product-image { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.product-card:hover .product-image { transform: scale(1.15); }
