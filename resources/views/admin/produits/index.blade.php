@@ -63,7 +63,8 @@ if (isset($_POST['maj_tarif_km'])) {
     file_put_contents('tarif_livraison.json', json_encode(['prix_km' => (int)$_POST['prix_km']]));
     $message_km = "Tarif mis à jour !";
 }
-$tarif_data = json_decode(file_get_contents('tarif_livraison.json'), true) ?: ['prix_km' => 100];
+$tarif_content = @file_get_contents('tarif_livraison.json');
+$tarif_data = $tarif_content ? json_decode($tarif_content, true) : ['prix_km' => 100];
 ?>
 
 <div class="bg-white p-6 rounded-[30px] shadow-lg border-l-8 border-blue-500 mb-8">

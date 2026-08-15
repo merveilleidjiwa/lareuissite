@@ -13,7 +13,7 @@ if (!isset($success)) $success = '';
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Réussite Agronomique — Connexion</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Baloo+2:wght@600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
   :root{
@@ -79,9 +79,9 @@ if (!isset($success)) $success = '';
   }
   .badge img{ width: 100%; height: 100%; object-fit: cover; }
   .brand h1{
-    font-family:'Baloo 2', sans-serif; /* Remplacé par la font du site si besoin, mais celle-ci est bien */
+    font-family:'Pacifico', cursive; /* Remplacé par la font du site si besoin, mais celle-ci est bien */
     font-weight:700;
-    font-size:32px;
+    font-size:36px;
     color:#fff;
     margin:0;
     letter-spacing:0.01em;
@@ -135,7 +135,7 @@ if (!isset($success)) $success = '';
 
   .card-head{ text-align:center; margin-bottom:24px; }
   h2.title{
-    font-family:'Baloo 2', sans-serif;
+    font-family:'Pacifico', cursive;
     font-weight:700;
     font-size:24px;
     margin:0 0 6px;
