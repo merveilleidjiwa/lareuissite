@@ -26,7 +26,7 @@ Route::get('/produits', [ProduitController::class, 'index'])->name('produits.ind
 Route::get('/promos', [ProduitController::class, 'promos'])->name('promos.index');
 
 // Profils (Dashboard utilisateur)
-Route::group(function () {
+Route::group([], function () {
     Route::get('/profil', [DashboardController::class, 'profil'])->name('profil');
     Route::get('/livreur', [DashboardController::class, 'livreur'])->name('livreur');
     Route::get('/vendeur', [DashboardController::class, 'vendeur'])->name('vendeur');
