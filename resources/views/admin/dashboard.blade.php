@@ -5,6 +5,10 @@ if (!isset($initiale)) $initiale = '';
 if (!isset($erreur)) $erreur = '';
 if (!isset($message)) $message = '';
 if (!isset($success)) $success = '';
+if (!isset($cmds)) $cmds = [];
+if (!isset($produits)) $produits = [];
+if (!isset($attente)) $attente = 0;
+if (!isset($erreur_login)) $erreur_login = '';
 ?>
 <?php
 $erreur = '';
