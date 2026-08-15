@@ -31,7 +31,8 @@ COPY . /var/www/html
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Adapter le fichier .env copié pour Render
-RUN sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env \
+RUN cp .env.example .env \
+    && sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env \
     && touch database/database.sqlite \
     && php artisan migrate --force
 
