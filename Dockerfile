@@ -9,10 +9,11 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
+    libsqlite3-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Installer les extensions PHP
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd
 
 # Activer le module de réécriture d'Apache (pour les jolies URLs de Laravel)
 RUN a2enmod rewrite
@@ -28,6 +29,13 @@ COPY . /var/www/html
 
 # Installer les dépendances PHP via Composer
 RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Créer un fichier .env par défaut, générer la clé et préparer la base SQLite
+RUN cp .env.example .env \
+    && sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env \
+    && php artisan key:generate \
+    && touch database/database.sqlite \
+    && php artisan migrate --force
 
 # Ajuster les permissions pour Laravel
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
