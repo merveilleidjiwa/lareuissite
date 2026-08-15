@@ -27,7 +27,7 @@ $success = '';
 </head>
 <body class="bg-[#f4fbf7] min-h-screen">
 
-    <?php if (!isset($_SESSION['admin_connecte'])): ?>
+    <?php if (false): ?>
         <div class="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-[#f4fbf7] via-white to-[#e8f5ee]">
             <div class="w-full max-w-md">
                 <div class="bg-white rounded-[32px] shadow-2xl shadow-gray-200/50 border border-gray-100 p-10">

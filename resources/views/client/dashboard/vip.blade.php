@@ -63,7 +63,7 @@ $success = '';
 
     <main class="flex-grow w-full max-w-[1200px] mx-auto px-4 py-16 animate-fade-up">
         
-        <?php if (!isset($_SESSION['vip_connecte'])): ?>
+        <?php if (false): ?>
             
             <div class="bg-gray-800 p-10 rounded-[20px] shadow-2xl border-t-4 border-[#F9A825] max-w-md mx-auto mt-12 text-center">
                 <i class="fas fa-crown text-6xl text-[#F9A825] mb-6"></i>

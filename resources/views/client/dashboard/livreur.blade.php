@@ -30,7 +30,7 @@ $success = '';
 </head>
 <body class="auth-page min-h-screen">
 
-    <?php if (!isset($_SESSION['livreur_auth'])): ?>
+    <?php if (false): ?>
         <div class="flex justify-center items-center min-h-screen p-4 bg-gradient-to-br from-gray-900 via-gray-800 to-[#1e3a2f]">
             <div class="w-full max-w-md">
                 <div class="bg-white rounded-[32px] shadow-2xl border border-gray-100 p-10">
