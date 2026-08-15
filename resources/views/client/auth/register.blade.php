@@ -13,7 +13,7 @@ $success = '';
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { theme: { extend: { colors: { brand: { green: '#27ae60', light: '#f4fbf7', orange: '#F9A825' } } } } }</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
         .auth-page { font-family: 'Poppins', sans-serif; }
@@ -31,7 +31,7 @@ $success = '';
 <body class="auth-page min-h-screen flex bg-gradient-to-br from-[#f4fbf7] via-white to-[#e8f5ee] prevent-flash" id="body-el">
 
     <div id="page-loader" class="fixed inset-0 bg-[#f4fbf7] z-[99999] flex items-center justify-center">
-        <img src="logo-reussite.png" alt="" class="w-20 h-20 object-contain animate-loader" onerror="this.style.display='none'">
+        <img src="/logo-reussite.png" alt="" class="w-20 h-20 object-contain animate-loader" onerror="this.style.display='none'">
     </div>
 
     <div class="flex-1 flex flex-col lg:flex-row min-h-screen w-full">
@@ -42,7 +42,7 @@ $success = '';
                 <div class="absolute bottom-32 right-20 w-48 h-48 rounded-full bg-white"></div>
             </div>
             <a href="{{ url('/') }}" class="relative flex items-center gap-3">
-                <img src="logo-reussite.png" class="w-12 h-12 lg:w-14 lg:h-14 object-cover rounded-full border-2 border-white/40 shadow-xl" alt="La Réussite">
+                <img src="/logo-reussite.png" class="w-12 h-12 lg:w-14 lg:h-14 object-cover rounded-full border-2 border-white/40 shadow-xl" alt="La Réussite">
                 <span class="font-brand text-2xl lg:text-3xl text-white drop-shadow-sm">La Réussite</span>
             </a>
             <div class="relative space-y-4 lg:space-y-6 mt-6 lg:mt-0">

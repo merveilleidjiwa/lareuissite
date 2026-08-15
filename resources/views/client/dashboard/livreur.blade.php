@@ -12,7 +12,7 @@ $success = '';
     <title>Espace Livreur - La Réussite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
         .auth-page { font-family: 'Poppins', sans-serif; }
@@ -27,7 +27,7 @@ $success = '';
             <div class="w-full max-w-md">
                 <div class="bg-white rounded-[32px] shadow-2xl border border-gray-100 p-10">
                     <div class="text-center mb-8">
-                        <img src="logo-reussite.png" alt="" class="w-16 h-16 mx-auto mb-4 rounded-2xl object-cover border-2 border-[#27ae60]/30 shadow-lg">
+                        <img src="/logo-reussite.png" alt="" class="w-16 h-16 mx-auto mb-4 rounded-2xl object-cover border-2 border-[#27ae60]/30 shadow-lg">
                         <h2 class="text-2xl font-bold text-gray-800">Connexion Livreur</h2>
                         <p class="text-gray-500 text-sm mt-1">Accès à l'espace missions</p>
                     </div>

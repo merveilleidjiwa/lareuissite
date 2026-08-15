@@ -13,23 +13,23 @@ $success = '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalogue - La Réussite</title>
-    <script src="tailwind.js"></script>
+    <script src="/tailwind.js"></script>
     <script>tailwind.config = { theme: { extend: { colors: { brand: { green: '#27ae60', light: '#f4fbf7', orange: '#F9A825', dark: '#333333' } } } } }</script>
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
     <script>
         var isConnected = <?php echo $is_connected ? 'true' : 'false'; ?>;
         var userInitial = "<?php echo $initiale; ?>";
     </script>
-<script src="script.js"></script>
+<script src="/script.js"></script>
 <body class="min-h-screen flex flex-col font-sans bg-[#f4fbf7] text-[#333333]">
 
     <header class="sticky top-0 z-50 bg-white shadow-md">
         <div class="max-w-[1200px] mx-auto px-4 py-3 flex justify-between items-center">
             
             <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href="{{ url('/') }}"">
-                <img src="logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#27ae60]">
+                <img src="/logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#27ae60]">
                 <span class="text-4xl font-brand text-[#27ae60] hidden sm:block">La Réussite</span>
             </div>
             
@@ -73,7 +73,7 @@ $success = '';
         <div class="max-w-[1200px] mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
             <div>
                 <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
-                    <img src="logo-reussite.png" class="w-12 h-12 rounded-full border border-white/20">
+                    <img src="/logo-reussite.png" class="w-12 h-12 rounded-full border border-white/20">
                     <span class="text-2xl font-brand text-[#27ae60]">La Réussite</span>
                 </div>
                 <p class="text-gray-400 text-sm leading-relaxed">
@@ -112,6 +112,6 @@ $success = '';
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>

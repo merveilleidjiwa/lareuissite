@@ -13,7 +13,7 @@ $success = '';
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { theme: { extend: { colors: { brand: { green: '#27ae60' } } } } }</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
         .auth-page { font-family: 'Poppins', sans-serif; }
@@ -32,7 +32,7 @@ $success = '';
                 <div class="absolute bottom-32 right-20 w-48 h-48 rounded-full bg-[#F9A825]/10 blur-3xl"></div>
             </div>
             <a href="{{ url('/') }}" class="relative flex items-center gap-3">
-                <img src="logo-reussite.png" alt="" class="w-14 h-14 rounded-full object-cover border-2 border-white/40 shadow-xl">
+                <img src="/logo-reussite.png" alt="" class="w-14 h-14 rounded-full object-cover border-2 border-white/40 shadow-xl">
                 <span class="font-brand text-2xl text-white">La Réussite</span>
                 <span class="text-[#27ae60] text-xs font-bold uppercase ml-2 bg-[#27ae60]/20 px-2 py-0.5 rounded">Admin</span>
             </a>
@@ -50,7 +50,7 @@ $success = '';
         <div class="flex-1 flex items-center justify-center p-6 lg:p-12">
             <div class="w-full max-w-md">
                 <a href="{{ url('/') }}" class="lg:hidden flex items-center gap-3 mb-8 text-white">
-                    <img src="logo-reussite.png" alt="" class="w-10 h-10 rounded-full object-cover border-2 border-white/40">
+                    <img src="/logo-reussite.png" alt="" class="w-10 h-10 rounded-full object-cover border-2 border-white/40">
                     <span class="font-brand text-xl">La Réussite Admin</span>
                 </a>
 

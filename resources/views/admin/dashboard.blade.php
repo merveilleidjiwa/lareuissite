@@ -20,7 +20,7 @@ $success = '';
             <div class="w-full max-w-md">
                 <div class="bg-white rounded-[32px] shadow-2xl shadow-gray-200/50 border border-gray-100 p-10">
                     <div class="text-center mb-8">
-                        <img src="logo-reussite.png" alt="" class="w-16 h-16 mx-auto mb-4 rounded-2xl object-cover border-2 border-[#27ae60]/30 shadow-lg">
+                        <img src="/logo-reussite.png" alt="" class="w-16 h-16 mx-auto mb-4 rounded-2xl object-cover border-2 border-[#27ae60]/30 shadow-lg">
                         <h2 class="text-2xl font-bold text-gray-800">Connexion Admin</h2>
                         <p class="text-gray-500 text-sm mt-1">Accès au tableau de bord</p>
                     </div>
@@ -57,7 +57,7 @@ $success = '';
         <header class="bg-white shadow-sm p-4 sticky top-0 z-50">
             <div class="max-w-[1200px] mx-auto flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <img src="logo-reussite.png" alt="" class="w-10 h-10 rounded-full object-cover border-2 border-[#27ae60]/30">
+                    <img src="/logo-reussite.png" alt="" class="w-10 h-10 rounded-full object-cover border-2 border-[#27ae60]/30">
                     <span class="font-black uppercase tracking-tighter text-sm">La Réussite <span class="text-[#27ae60]">Admin</span></span>
                 </div>
                 <a href="?logout=1" class="text-red-500 font-bold text-[10px] uppercase border border-red-100 px-3 py-1 rounded-full hover:bg-red-50 transition-all"><i class="fas fa-power-off mr-1"></i> Quitter</a>

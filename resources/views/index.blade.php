@@ -13,7 +13,7 @@ $success = '';
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { theme: { extend: { colors: { brand: { green: '#27ae60', light: '#f4fbf7', orange: '#F9A825', dark: '#333333' } } } } }</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body class="min-h-screen flex flex-col font-sans bg-[#f4fbf7] text-[#333333]">
@@ -22,7 +22,7 @@ $success = '';
         <div class="max-w-[1200px] mx-auto px-4 py-3 flex justify-between items-center">
             
             <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href="{{ url('/') }}"">
-                <img src="logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#27ae60]">
+                <img src="/logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#27ae60]">
                 <span class="text-4xl font-brand text-[#27ae60] hidden sm:block">La Réussite</span>
             </div>
             
@@ -135,7 +135,7 @@ $success = '';
         }, 4000);
     </script>
     
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 
     
     <div id="profile-drawer" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out">

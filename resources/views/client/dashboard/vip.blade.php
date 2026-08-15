@@ -10,10 +10,10 @@ $success = '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club VIP - La Réussite</title>
-    <script src="tailwind.js"></script>
+    <script src="/tailwind.js"></script>
     <script>tailwind.config = { theme: { extend: { colors: { brand: { green: '#27ae60', light: '#f4fbf7', orange: '#F9A825', dark: '#333333' } } } } }</script>
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
     <script>
         // FONCTION POUR AFFICHER/CACHER LE MOT DE PASSE (Thème VIP)
         function togglePassword(inputId, icon) {
@@ -32,12 +32,12 @@ $success = '';
 </head>
 <body class="min-h-screen flex flex-col font-sans bg-gray-900 text-white preload-flash">
 
-    <div id="page-transition" class="page-transition-overlay bg-gray-900"><img src="logo-reussite.png" alt="" class="w-20 h-20 object-contain"></div>
+    <div id="page-transition" class="page-transition-overlay bg-gray-900"><img src="/logo-reussite.png" alt="" class="w-20 h-20 object-contain"></div>
 
     <header class="sticky top-0 z-50 bg-gray-900 shadow-md border-b border-gray-800">
         <div class="max-w-[1200px] mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href="{{ url('/') }}"">
-                <img src="logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#F9A825]">
+                <img src="/logo-reussite.png" class="w-16 h-16 object-cover rounded-full border-2 border-[#F9A825]">
                 <span class="text-4xl font-brand text-[#F9A825] hidden sm:block">Club VIP</span>
             </div>
             <nav class="hidden md:flex items-center gap-8 font-bold text-sm uppercase">
@@ -134,7 +134,7 @@ $success = '';
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 
     <?php if (isset($_SESSION['vip_connecte'])): ?>
     <script>
@@ -187,6 +187,6 @@ $success = '';
         document.addEventListener('DOMContentLoaded', chargerProduitsVIP);
     </script>
     <?php endif; ?>
-    <script src="js/page-loader.js"></script>
+    <script src="/js/page-loader.js"></script>
 </body>
 </html>
