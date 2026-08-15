@@ -30,10 +30,8 @@ COPY . /var/www/html
 # Installer les dépendances PHP via Composer
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Créer un fichier .env par défaut, générer la clé et préparer la base SQLite
-RUN cp .env.example .env \
-    && sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env \
-    && php artisan key:generate \
+# Adapter le fichier .env copié pour Render
+RUN sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env \
     && touch database/database.sqlite \
     && php artisan migrate --force
 
