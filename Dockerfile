@@ -39,8 +39,8 @@ RUN cp .env.example .env \
 
 # Ajuster les permissions pour Laravel et les dossiers d'upload
 RUN mkdir -p /var/www/html/public/uploads \
-    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/uploads \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/uploads
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/uploads /var/www/html/database \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/uploads /var/www/html/database
 
 # Configurer Apache pour pointer vers le dossier "public" de Laravel
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
