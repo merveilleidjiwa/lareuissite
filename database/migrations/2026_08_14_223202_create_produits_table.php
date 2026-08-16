@@ -10,14 +10,14 @@ return new class extends Migration
     {
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('nom');
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 2);
-            $table->integer('stock')->default(0);
+            $table->decimal('prix', 10, 2);
             $table->string('image')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->string('categorie')->nullable();
+            $table->json('tarifs')->nullable();
+            $table->string('sous_categorie')->nullable();
+            $table->string('statut')->default('actif');
             $table->timestamps();
         });
     }
