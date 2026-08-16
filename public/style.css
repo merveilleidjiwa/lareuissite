@@ -1,5 +1,5 @@
 /* Importation des belles polices */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Grand+Hotel&family=Poppins:wght@300;400;600;700&display=swap');
 
 body {
   background-color: #f4fbf7;
@@ -12,7 +12,7 @@ body.preload-flash { opacity: 0; }
 body.loaded-content { opacity: 1; transition: opacity 0.25s ease-out; }
 
 .font-display { font-family: 'Bebas Neue', sans-serif; }
-.font-brand { font-family: 'Pacifico', cursive; }
+.font-brand { font-family: 'Grand Hotel', cursive; }
 
 /* === LOADER PAGE TRANSITION (Logo feuille) === */
 .animate-loader {
