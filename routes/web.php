@@ -24,6 +24,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Produits et Promos
 Route::get('/produits', [ProduitController::class, 'index'])->name('produits.index');
 Route::get('/promos', [ProduitController::class, 'promos'])->name('promos.index');
+Route::get('/get_produits', function () {
+    return response()->json(\Illuminate\Support\Facades\DB::table('produits')->where('statut', 'actif')->get());
+});
 
 // Profils (Dashboard utilisateur)
 Route::group([], function () {

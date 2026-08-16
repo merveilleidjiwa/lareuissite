@@ -200,7 +200,7 @@ function afficherProduits(produits, container) {
             <div class="group bg-white rounded-[20px] overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all border ${borderClass} animate-fade-up relative">
                 ${promoBadge}
                 <div class="h-[220px] w-full bg-gray-50 flex items-center justify-center overflow-hidden">
-                    <img src="${product.image}" class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110" referrerpolicy="no-referrer">
+                    <img src="/${product.image}" class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110" referrerpolicy="no-referrer">
                 </div>
                 <div class="p-5 flex flex-col flex-grow">
                     <div class="flex items-center gap-2 mb-2">
@@ -445,7 +445,7 @@ function updateCartUI() {
             total += item.custom_price;
             container.innerHTML += `
                 <div class="flex gap-4 border-b border-gray-100 pb-4 mb-4 relative">
-                    <img src="${item.product.image}" class="w-16 h-16 rounded-xl object-cover">
+                    <img src="/${item.product.image}" class="w-16 h-16 rounded-xl object-cover">
                     <div class="pr-8">
                         <h4 class="font-bold text-sm">${item.product.nom}</h4>
                         <p class="text-[10px] text-[#27ae60] font-bold uppercase">${item.details}</p>

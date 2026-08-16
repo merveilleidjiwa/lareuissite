@@ -178,7 +178,7 @@ $tarif_data = $tarif_content ? json_decode($tarif_content, true) : ['prix_km' =>
                     if($afficher === true): ?>
                     <div class="flex items-center justify-between border-b p-2 hover:bg-gray-50 transition-colors">
                         <div class="flex items-center gap-3">
-                            <img src="<?php echo $p['image']; ?>" class="w-10 h-10 rounded object-cover border shadow-sm">
+                            <img src="/<?php echo $p['image']; ?>" class="w-10 h-10 rounded object-cover border shadow-sm">
                             <div>
                                 <span class="text-xs font-bold block"><?php echo $p['nom']; ?></span>
                                 <span class="text-[10px] text-green-600 font-bold"><?php echo $p['prix']; ?> FCFA</span>
