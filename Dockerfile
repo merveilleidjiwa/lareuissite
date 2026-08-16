@@ -37,9 +37,10 @@ RUN cp .env.example .env \
     && touch database/database.sqlite \
     && php artisan migrate --force
 
-# Ajuster les permissions pour Laravel
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Ajuster les permissions pour Laravel et les dossiers d'upload
+RUN mkdir -p /var/www/html/public/uploads \
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/uploads \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/public/uploads
 
 # Configurer Apache pour pointer vers le dossier "public" de Laravel
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public

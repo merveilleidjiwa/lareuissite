@@ -59,7 +59,7 @@ $success = '';
             <div class="w-full max-w-md">
                 <a href="{{ url('/') }}" class="lg:hidden flex items-center gap-3 mb-8 text-white">
                     <img src="/logo-reussite.png" alt="" class="w-10 h-10 rounded-full object-cover border-2 border-white/40">
-                    <span class="font-brand text-xl">La Réussite Admin</span>
+                    <span class="flex items-baseline"><span class="font-brand text-2xl text-[#27ae60]">La Réussite</span><span class="font-black uppercase text-xs text-gray-500 ml-1">Admin</span></span>
                 </a>
 
                 <div class="bg-white rounded-[32px] shadow-2xl border border-gray-100 p-8 lg:p-10">

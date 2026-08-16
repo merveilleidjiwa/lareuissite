@@ -31,7 +31,7 @@ $success = '';
 
     <header class="bg-white shadow-sm p-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <a href="{{ url('/') }}" class="text-2xl font-black text-[#27ae60] uppercase">La Réussite</a>
+            <a href="{{ url('/') }}" class="text-3xl font-brand text-[#27ae60]">La Réussite</a>
             <a href="{{ url('logout') }}" class="text-red-500 text-sm font-bold"><i class="fas fa-sign-out-alt"></i> Quitter</a>
         </div>
     </header>

@@ -78,7 +78,7 @@ $success = '';
     <?php else: ?>
         <div class="bg-gray-900 text-white min-h-screen p-4">
         <header class="flex justify-between items-center mb-8">
-            <h1 class="font-black uppercase text-xl text-[#27ae60]">Livreur Live<?php if(!empty($_SESSION['livreur_nom'])) echo ' • ' . htmlspecialchars($_SESSION['livreur_nom']); ?></h1>
+            <h1 class="flex items-baseline"><span class="font-brand text-3xl text-[#27ae60]">La Réussite</span><span class="text-xl font-black uppercase text-[#27ae60] ml-2">Livreur<?php if(!empty($_SESSION['livreur_nom'])) echo ' • ' . htmlspecialchars($_SESSION['livreur_nom']); ?></span></h1>
             <div class="flex items-center gap-4">
                 <span class="bg-green-500/20 text-green-500 px-3 py-1 rounded-full text-[10px] font-bold animate-pulse font-mono uppercase">Connecté</span>
                 <a href="?logout=1" class="text-gray-500 text-xs hover:text-red-400 transition-colors"><i class="fas fa-sign-out-alt"></i> Quitter</a>

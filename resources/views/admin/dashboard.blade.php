@@ -73,7 +73,7 @@ $success = '';
             <div class="max-w-[1200px] mx-auto flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <img src="/logo-reussite.png" alt="" class="w-10 h-10 rounded-full object-cover border-2 border-[#27ae60]/30">
-                    <span class="font-black uppercase tracking-tighter text-sm">La Réussite <span class="text-[#27ae60]">Admin</span></span>
+                    <span class="flex items-baseline"><span class="font-brand text-2xl text-[#27ae60]">La Réussite</span><span class="text-[#27ae60] font-black uppercase tracking-tighter text-xs ml-1">Admin</span></span>
                 </div>
                 <a href="?logout=1" class="text-red-500 font-bold text-[10px] uppercase border border-red-100 px-3 py-1 rounded-full hover:bg-red-50 transition-all"><i class="fas fa-power-off mr-1"></i> Quitter</a>
             </div>

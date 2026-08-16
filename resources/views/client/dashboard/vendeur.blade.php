@@ -37,7 +37,7 @@ $success = '';
                 <div class="w-10 h-10 bg-[#27ae60] rounded-full flex items-center justify-center text-white font-bold">
                     <?php echo substr($vendeur_nom, 0, 1); ?>
                 </div>
-                <span class="font-black text-[#27ae60] uppercase tracking-tighter">La Réussite <span class="text-gray-300 font-normal">| Vendeur</span></span>
+                <span class="flex items-baseline"><span class="font-brand text-2xl text-[#27ae60]">La Réussite</span><span class="text-gray-300 font-normal uppercase tracking-tighter text-xs ml-2">| Vendeur</span></span>
             </div>
             <nav class="flex gap-4 items-center">
                 <span class="text-xs font-bold text-gray-400 uppercase hidden md:block">Boutique : <?php echo $vendeur_nom; ?></span>
